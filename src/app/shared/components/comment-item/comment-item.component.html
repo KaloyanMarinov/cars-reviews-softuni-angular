@@ -2,14 +2,17 @@
 
   <div class="row-u-sm">
     <div class="col-auto d-o-xs-n">
-      <p class="comment__abbr foc tc-w tt-u fs-50 ff-headings fw-b bg-p br-c">КМ</p>
+      <p class="comment__abbr foc tc-w tt-u fs-50 ff-headings fw-b bg-p br-c">{{comment.author | abbr}}</p>
     </div>
     <div class="col pt-u-sm-15">
 
       <div class="mb-10 d-u-sm-f ai-u-sm-c jc-u-sm-sb">
         <h5 class="h5 mb-o-xs-5 tc-p">{{comment.author}}</h5>
 
-        <p class="ml-10 tc-p fw-b ff-headings">Rated: {{comment.rating}} / 5</p>
+        <div class="d-f ai-c">
+          <app-rating [rating]="comment.rating"></app-rating>
+          <p class="ml-10 tc-p fw-b ff-headings">Rated: {{comment.rating}} / 5</p>
+        </div>
       </div>
 
       <p class="mb-u-sm-35 mb-o-xs-25">{{comment._kmd.ect | date : 'd.MM.y HH:mm:ss'}}</p>

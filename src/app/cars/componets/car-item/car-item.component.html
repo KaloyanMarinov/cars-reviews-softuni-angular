@@ -5,9 +5,9 @@
 
   <h3 class="h4 pb-15 mb-u-sm-a tc-p"><a [routerLink]="[car._id]">{{car.brand}} {{car.model}} {{car.year}}</a></h3>
 
-  <div class="d-f jc-c">
-    <!-- TODO Rating & Raview count  -->
-    <app-rating [rating]="car.rating" [reviews]="2"></app-rating>
+  <div class="d-f mb-20 ai-c jc-c">
+    <app-rating [rating]="car.rating"></app-rating>
+    <p class="fw-b">{{car.rating}} / 5</p>
   </div>
 
   <a [routerLink]="[car._id]" class="btn btn--p tc-w w-100 br-p tt-u">Read Review</a>

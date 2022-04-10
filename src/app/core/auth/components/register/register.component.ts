@@ -15,24 +15,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   message!: IMessage;
   formValid!: boolean | null;
+  submiting = true;
   sub!: Subscription;
 
   constructor(private store: Store) {
     this.registerForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      firstname: new FormControl(''),
-      lastname: new FormControl(''),
+      firstname: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
     });
   }
 
   ngOnInit(): void {
     this.sub = this.store.select(getAppMessage).subscribe(message => {
-      if (message?.type) {
-        this.formValid = !message.type;
-        this.registerForm.reset();
-      }
+      this.formValid = message.type;
+      this.submiting = false;
       this.message = message
+      this.registerForm.reset();
     });
   }
 
@@ -42,8 +42,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     if (this.formValid) {
       this.formValid = false;
+      this.submiting = true;
       this.store.dispatch(Register(data));
     } else {
+      this.submiting = false;
       this.formValid = true;
     }
   }

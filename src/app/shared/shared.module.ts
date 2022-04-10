@@ -7,6 +7,11 @@ import { AddCommentComponent } from './components/add-comment/add-comment.compon
 import { ListCommentsComponent } from './components/list-comments/list-comments.component';
 import { CommentsService } from './services/comments.service';
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AbbrPipe } from './pipes/abbr.pipe';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
 
 
 
@@ -17,14 +22,19 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
     AddCommentComponent,
     ListCommentsComponent,
     CommentItemComponent,
+    LoaderComponent,
+    AbbrPipe,
+    PageHeaderComponent,
   ],
   imports: [
     CommonModule,
+    RouterModule,
     NgCeilPipeModule,
-    NgFloorPipeModule
+    NgFloorPipeModule,
+    ReactiveFormsModule
   ],
   providers: [
-    CommentsService
+    CommentsService,
   ],
   exports: [
     MessageComponent,
@@ -32,6 +42,9 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
     AddCommentComponent,
     ListCommentsComponent,
     CommentItemComponent,
+    LoaderComponent,
+    AbbrPipe,
+    PageHeaderComponent,
   ]
 })
 export class SharedModule { }

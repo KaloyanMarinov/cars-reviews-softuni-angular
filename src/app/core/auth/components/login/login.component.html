@@ -1,7 +1,9 @@
+<app-page-header></app-page-header>
 <div class="container">
   <div class="row jc-c">
-    <div class="col-u-sm-6 py-60">
+    <div class="col-u-sm-6 py-40">
       <h1 class="h2 mb-20 ta-c tc-b">Login</h1>
+      <p class="mb-15 ta-c fs-12">All fields marked with * are required</p>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-20">
           <label for="username" class="d-b tt-u fw-b fs-12 mb-10 tc-p">E-mail address <span class="required tc-r">*</span></label>
@@ -44,7 +46,7 @@
 
         <app-message [message]="message"></app-message>
 
-        <button type="submit" class="btn btn--s w-100">Login</button>
+        <button type="submit" class="btn btn--s w-100" [class.loading]="submiting">Login</button>
       </form>
     </div>
   </div>

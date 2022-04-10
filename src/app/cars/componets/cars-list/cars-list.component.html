@@ -1,6 +1,8 @@
+<app-page-header></app-page-header>
 <div class="pt-30">
   <div class="container">
-    <div class="products row-u-sm mx-o-sm-n8">
+    <app-loader *ngIf="!(cars$| async)?.length"></app-loader>
+    <div *ngIf="(cars$| async)?.length" class="products row-u-sm mx-o-sm-n8">
       <div *ngFor="let car of (cars$ | async)" class="col-u-sm-4 px-o-sm-8 mb-30">
         <app-car-item [car]="car"></app-car-item>
       </div>

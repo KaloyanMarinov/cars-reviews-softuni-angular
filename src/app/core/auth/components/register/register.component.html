@@ -1,7 +1,9 @@
+<app-page-header></app-page-header>
 <div class="container">
   <div class="row jc-c">
-    <div class="col-u-sm-6 py-60">
+    <div class="col-u-sm-6 py-40">
       <h1 class="h2 mb-20 ta-c tc-b">Sign Up</h1>
+      <p class="mb-15 ta-c fs-12">All fields marked with * are required</p>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="mb-20">
           <label for="username" class="d-b tt-u fw-b fs-12 mb-10 tc-p">E-mail address <span class="required tc-r">*</span></label>
@@ -40,30 +42,37 @@
         </div>
 
         <div class="mb-20">
-          <label for="firstname" class="d-b tt-u fw-b fs-12 mb-10 tc-p">First Name</label>
+          <label for="firstname" class="d-b tt-u fw-b fs-12 mb-10 tc-p">First Name<span class="required tc-r">*</span></label>
           <input
             id="firstname"
             type="firstname"
             class="field"
             formControlName="firstname"
+            [class.invalid]="(f.firstname?.touched && f.firstname?.errors?.required) || (!f.firstname?.touched && formValid)"
             autocomplete="off"
             placeholder="First Name"
           >
+
+          <p class="mt-10 tc-r" *ngIf="(f.firstname?.touched && f.firstname?.errors?.required) || formValid">Please provide a firstname.</p>
         </div>
 
+
         <div class="mb-20">
-          <label for="lastname" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Last name</label>
+          <label for="lastname" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Last name<span class="required tc-r">*</span></label>
           <input
             id="lastname"
             type="lastname"
             class="field"
             formControlName="lastname"
+            [class.invalid]="(f.lastname?.touched && f.lastname?.errors?.required) || (!f.lastname?.touched && formValid)"
             autocomplete="off"
             placeholder="Last Name"
           >
+
+          <p class="mt-10 tc-r" *ngIf="(f.lastname?.touched && f.lastname?.errors?.required) || formValid">Please provide a lastname.</p>
         </div>
 
-        <p class="mb-20 ta-c">Вече имате акаунт? <a [routerLink]="['/auth/login']" class="tc-p fw-b">Log In</a></p>
+        <p class="mb-20 ta-c">Already have an account? <a [routerLink]="['/auth/login']" class="tc-p fw-b">Log In</a></p>
 
         <app-message [message]="message"></app-message>
 

@@ -4,12 +4,13 @@ import { HomeComponent } from './pages/componets/home/home.component';
 import { AboutComponent } from './pages/componets/about/about.component';
 import { ContactComponent } from './pages/componets/contact/contact.component';
 import { AuthGuard } from './core/auth/auth.cuard';
+import { CarsListComponent } from './cars/componets/cars-list/cars-list.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: HomeComponent
+    redirectTo: 'cars'
   },
   {
     path: 'auth',
@@ -22,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
   },
   {
     path: 'contacts',

@@ -12,22 +12,24 @@ import { IMessage } from 'src/app/shared/interfaces';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   message!: IMessage;
-  formValid!: boolean| null;
+  formValid!: boolean | null;
+  submiting = false;
   sub!: Subscription;
 
-  constructor(private store: Store) {
+  constructor(private store: Store) { }
+
+  ngOnInit(): void {
     this.loginForm = new FormGroup({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
-  }
 
-  ngOnInit(): void {
     this.sub = this.store.select(getAppMessage).subscribe(message => {
-      this.formValid = message?.type;
+      this.formValid = message.type;
       this.message = message
+      this.submiting = false;
     });
   }
 
@@ -38,8 +40,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (this.formValid) {
       this.formValid = false;
+      this.submiting = true;
       this.store.dispatch(Login(data));
     } else {
+      this.submiting = true;
       this.formValid = true;
     }
   }

@@ -45,6 +45,7 @@
               font-size: 16px;
             }
 
+            .current-menu-item,
             &:hover > a {
               color: $primary;
               background: $white;

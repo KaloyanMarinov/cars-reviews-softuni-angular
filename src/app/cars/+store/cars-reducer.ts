@@ -1,7 +1,6 @@
-import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
 import { ICarsState } from '../interfaces';
-import { CarClear, CarCommentsSuccess, CarsSuccess, CarSuccess } from './cars-actions';
+import { AddCarCommentSuccess, CarClear, CarCommentsSuccess, CarsSuccess, CarSuccess } from './cars-actions';
 
 const initialState: ICarsState = {
   count: 0,
@@ -29,4 +28,11 @@ export const carsReducer = createReducer<ICarsState>(
       comments
     }
   })),
+  on(AddCarCommentSuccess, (state, { comment }) => ({
+    ...state,
+    car: {
+      ...state.car,
+      comments: [...state.car.comments, comment]
+    }
+  }))
 );

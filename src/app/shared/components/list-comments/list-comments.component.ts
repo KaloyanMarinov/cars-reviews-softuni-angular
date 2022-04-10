@@ -9,7 +9,9 @@ import { IComment } from '../../interfaces';
 })
 export class ListCommentsComponent implements OnInit {
   @Input() comments!: IComment[] | undefined;
+  @Input() postId!: string | undefined;
   rating: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {

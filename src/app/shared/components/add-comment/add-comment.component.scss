@@ -1,0 +1,12 @@
+// Tools
+@import '../../../../assets/styles/tools';
+
+// Settings
+@import '../../../../assets/styles/settings';
+
+.product {
+
+    &__comments {
+      max-width: 960px;
+    }
+}

@@ -1,5 +1,5 @@
 
-<div class="d-f mb-20 ai-c">
+<div class="d-f ai-c">
   <ng-container *ngIf="rating">
     <img *ngFor="let i of stars.slice(0, rating | floor)" width="15" height="15" class="mr-5" src="../../../../assets/images/icons/star-on.svg"alt="star">
 
@@ -11,6 +11,4 @@
   <ng-container *ngIf="!rating">
     <img *ngFor="let stars" width="15" height="15" class="mr-5" src="../../../../assets/images/icons/star-off.svg"alt="star">
   </ng-container>
-
-  <p class="tc-g td-u ml-5">{{reviews}} Reviews</p>
 </div>

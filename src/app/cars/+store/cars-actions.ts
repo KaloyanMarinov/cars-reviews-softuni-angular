@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IComment } from 'src/app/shared/interfaces';
+import { IAddComment, IComment } from 'src/app/shared/interfaces';
 import { ICar } from '../interfaces/cars';
 
 export const ActionTypes = {
@@ -9,6 +9,9 @@ export const ActionTypes = {
   Car: '[CARS] Car',
   CarSuccess: '[CARS] Car Success',
   CarClear: '[CARS] Cars Clear',
+
+  AddCarComment: '[CARS] Add Car Comments',
+  AddCarCommentSuccess: '[CARS] Add Car Comments Success',
 
   CarComments: '[CARS] Car Comments',
   CarCommentsSuccess: '[CARS] Car Comments Cussess',
@@ -34,6 +37,16 @@ export const Car = createAction(
 export const CarSuccess = createAction(
   ActionTypes.CarSuccess,
   props<{ car: ICar }>()
+);
+
+export const AddCarComment = createAction(
+  ActionTypes.AddCarComment,
+  props<{ data: IAddComment }>()
+);
+
+export const AddCarCommentSuccess = createAction(
+  ActionTypes.AddCarCommentSuccess,
+  props<{ comment: IComment }>()
 );
 
 export const CarComments = createAction(

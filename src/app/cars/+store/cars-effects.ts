@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess } from './cars-actions';
+import { AddCarComment, AddCarCommentSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess } from './cars-actions';
 import { CarsService } from '../cars.service';
-import { ActionFailed } from 'src/app/+store/app-actions';
+import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
 import { forkJoin } from 'rxjs';
 import { CommentsService } from 'src/app/shared/services/comments.service';
 
@@ -56,6 +56,21 @@ export class CarsEffects {
       switchMap(({ id }) =>
         this.commentsService.getCommentByPost(id).pipe(
           map((comments) => CarCommentsSuccess({ comments })),
+          catchError((err) => [ActionFailed({ error: err.error })])
+        )
+      )
+    )
+  )
+
+  addComment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AddCarComment),
+      switchMap(({data}) =>
+        this.commentsService.addComment(data).pipe(
+          switchMap((comment) => [
+            AddCarCommentSuccess({ comment }),
+            ActionSuccess({ error: { description: 'Review added successfully.' } })
+          ]),
           catchError((err) => [ActionFailed({ error: err.error })])
         )
       )

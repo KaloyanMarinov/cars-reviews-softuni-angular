@@ -13,6 +13,5 @@ export class CarItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
 

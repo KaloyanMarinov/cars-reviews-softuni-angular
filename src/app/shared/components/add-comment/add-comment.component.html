@@ -1,1 +1,61 @@
-<p>add-comment works!</p>
+<div class="bg-l py-u-sm-50 py-o-xs-30">
+  <div class="product__comments mx-a px-15">
+    <h4 id="reply-title" class="h3 ta-c tc-p mb-20">Add Review</h4>
+
+    <ng-container *ngIf="!isLogged">
+      <p class="fs-18 ta-c">It needs to be authenticated to add a review</p>
+
+      <div class="row-u-sm mt-20 jc-c">
+        <div class="col-u-sm-4 mt-10">
+          <a [routerLink]="['/auth/login']" class="btn btn--p tc-w w-100">Login</a>
+        </div>
+
+        <div class="col-u-sm-4 mt-10">
+          <a [routerLink]="['/auth/signup']" class="btn btn--p tc-w w-100">Sign Up</a>
+        </div>
+      </div>
+    </ng-container>
+
+    <div *ngIf="isLogged" class="row-u-sm jc-u-sm-c">
+      <div class="col-u-sm-7">
+        <p class="mb-15 ta-c fs-12">All fields marked with * are required</p>
+
+        <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+          <div class="mb-20">
+            <label for="rating" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Rating <span class="required tc-r">*</span></label>
+            <select
+              id="rating"
+              class="field"
+              [class.invalid]="(f.rating?.touched && f.rating?.errors?.required)"
+              formControlName="rating"
+              autocomplete="off"
+            >
+              <option *ngFor="let i of ratingValues" [value]="i">{{i}}</option>
+            </select>
+          </div>
+
+          <div class="mb-20">
+            <label for="comment" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Review <span class="required tc-r">*</span></label>
+            <textarea
+              id="comment"
+              class="field"
+              [class.invalid]="(f.comment?.touched && f.comment?.errors?.required || f.comment?.errors?.comment || f.comment?.errors?.minlength) || (!f.comment?.touched && formValid)"
+              formControlName="comment"
+              autocomplete="off"
+              placeholder="Write review"
+            ></textarea>
+
+            <ng-container *ngIf="f.comment?.touched || formValid">
+              <p class="mt-10 tc-r" *ngIf="f.comment?.errors?.required">Please provide a comment.</p>
+              <p class="mt-10 tc-r" *ngIf="f.comment?.errors?.minlength">The comment must be at least 20 characters long</p>
+            </ng-container>
+          </div>
+
+          <app-message [message]="message"></app-message>
+
+          <button type="submit" class="btn btn--s w-100" [class.loading]="submiting">Add review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
