@@ -1,0 +1,99 @@
+//
+// Buttons
+//
+[class*='#{$btn-prefix}-'] {
+  color: $white;
+  transition: $btn-transition;
+}
+
+.#{$btn-prefix} {
+  display: inline-block;
+  max-width: 100%;
+  height: $btn-height;
+  padding: $btn-padding-y $btn-padding-x;
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  color: $btn-color;
+  text-align: center;
+  line-height: $btn-line-height;
+  text-decoration: $btn-decoration;
+  white-space: $btn-white-space;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: $btn-border-width $btn-border-style $btn-border-color;
+  border-radius: $btn-border-radius;
+
+    @at-root a#{&} {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: normal;
+    }
+
+    @include media-breakpoint-up(sm) {
+      font-size: $btn-font-size-desktop;
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: $btn-font-size-mobile;
+    }
+
+    &:hover {
+      text-decoration: $btn-hover-decoration;
+    }
+
+    &.disabled,
+    &:disabled {
+      opacity: $btn-disabled-opacity;
+    }
+
+    &--gr {
+      color: $primary;
+      background-color: #e7bf7b;
+      @include gradient-x-three-colors(#e7bf7b, #faf6a7, 50%, #e7bf7b);
+      box-shadow: 0 2px 18px rgba($secondary, .48);
+
+        &:not(.loading):hover {
+          color: $white;
+          background: $primary;
+          box-shadow: 0 2px 18px rgba($primary, .48);
+        }
+    }
+
+    &--260 {
+      min-width: 260px;
+    }
+
+    &-link {
+
+        &:hover {
+          color: $secondary;
+        }
+    }
+
+    &.loading {
+      position: relative;
+      font-size: 0;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: 2;
+          background: url('#{$images-icons}loader.svg') center no-repeat;
+        }
+
+        svg {
+          display: none;
+        }
+    }
+}
+//
+// Alternate buttons
+//
+@include make-btn-colors();
+@include make-btn-ghost();

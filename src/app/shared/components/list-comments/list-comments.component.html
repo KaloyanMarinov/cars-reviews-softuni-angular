@@ -1,0 +1,11 @@
+<h3 class="h2 mb-u-sm-30 ta-c mb-o-xs-20 tc-p tt-u">Reviews</h3>
+
+<div *ngIf="comments?.length" class="product__comments mx-a px-15">
+  <div class="ta-c">
+    <p class="product__average mb-u-sm-30 mb-o-xs-20 tc-p ff-headings">{{rating}} / 5</p>
+  </div>
+
+  <app-comment-item *ngFor="let comment of comments" [comment]="comment"></app-comment-item>
+</div>
+
+<p *ngIf="!comments?.length" class="ta-c fs-18">No reviews added.</p>

@@ -1,0 +1,89 @@
+// Tools
+@import '../tools';
+
+// Settings
+@import '../settings';
+
+.event {
+
+    &__cnt {
+      max-width: 1030px;
+      background: rgba($black, .6);
+    }
+
+    &__slogan {
+
+        @include media-breakpoint-up(sm) {
+          font-size: 48px;
+        }
+
+        @include media-breakpoint-down(xs) {
+          font-size: 28px;
+        }
+    }
+
+    .wp-editor {
+      max-width: 620px;
+    }
+}
+
+.countdown-digits {
+  display: flex;
+  justify-content: center;
+}
+
+.countdown-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $white;
+  border-radius: 6px;
+
+    @include media-breakpoint-up(sm) {
+      width: 100px;
+      height: 100px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: 70px;
+      height: 70px;
+    }
+
+    &:not(:last-child) {
+
+        @include media-breakpoint-up(sm) {
+          margin-right: 30px;
+        }
+
+        @include media-breakpoint-down(xs) {
+          margin-right: 15px;
+        }
+    }
+}
+
+.countdown-digit {
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-weight: $font-weight-bold;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 50px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 30px;
+    }
+}
+
+.countdown-part {
+  text-transform: uppercase;
+
+    @include media-breakpoint-up(sm) {
+      font-size: 20px;
+    }
+
+    @include media-breakpoint-down(xs1) {
+      font-size: 16px;
+    }
+}

@@ -1,0 +1,16 @@
+.tabs {
+  z-index: 2;
+
+
+    @include media-breakpoint-up(sm) {
+
+        .ph + & {
+          margin-top: -38px;
+
+            &__tabs {
+              padding-bottom: 0;
+              @include border-bottom-radius(0);
+            }
+        }
+    }
+}

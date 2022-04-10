@@ -1,0 +1,208 @@
+// Tools
+@import '../tools';
+
+// Settings
+@import '../settings';
+
+.hr {
+
+    &__cnt {
+      max-width: 1090px;
+    }
+
+    &__boxes {
+
+        &::before,
+        &::after {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          z-index: -2;
+          margin: auto;
+        }
+
+        &::before {
+          content: '';
+          top: 0;
+          width: 2px;
+          background: url('#{$images-icons}vertical-dashed.svg');
+        }
+
+        @include media-breakpoint-up(sm) {
+
+            &::after {
+              content: '';
+              width: 14px;
+              height: 14px;
+              border-right: 2px solid $primary;
+              border-bottom: 2px solid $primary;
+              transform: rotate(45deg);
+            }
+        }
+
+    }
+
+    &__box {
+      min-height: 100px;
+    }
+
+    .col-u-sm-6 {
+
+        &:first-child {
+
+            .hr__circle {
+              width: 100px;
+              height: 100px;
+
+                &::before {
+                  width: 52px;
+                }
+            }
+
+            .hr__before {
+              font-size: 16px;
+            }
+
+            .hr__year {
+              font-size: 32px;
+            }
+
+            .hr__after {
+              font-size: 16px;
+            }
+
+            .hr__box {
+
+                &::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  width: 2px;
+                  height: 50%;
+                  background: $white;
+                  right: 100%;
+                  margin-right: 99px;
+                }
+            }
+        }
+
+        @include media-breakpoint-up(sm) {
+
+            &:last-child {
+
+                .hr__circle {
+                  width: 100px;
+                  height: 100px;
+    
+                    &::before {
+                      width: 52px;
+                    }
+                }
+
+                .hr__before {
+                  font-size: 16px;
+                }
+
+                .hr__year {
+                  font-size: 32px;
+                }
+
+                .hr__after {
+                  font-size: 16px;
+                }
+            }
+        }
+    }
+
+    &__circle {
+      width: 68px;
+      height: 68px;
+      border: 2px solid $primary;
+
+        &::before,
+        &::after {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+        }
+
+        &::after {
+          content: '';
+          width: 11px;
+          height: 11px;
+          background: $white;
+          border: 1px solid $primary;
+          border-radius: 50%;
+        }
+
+        @include media-breakpoint-up(sm) {
+          top: 0;
+          bottom: 0;
+
+            &::before {
+              content: '';
+              width: 68px;
+              height: 1px;
+              background: url('#{$images-icons}horizontal-dashed.svg');
+              z-index: -2;
+            }
+
+            .pl-u-sm-100 & {
+              right: 100%;
+              transform: translateX(50%);
+              margin-right: 100px;
+
+                &::before {
+                  left: 100%;
+                }
+
+                &::after {
+                  left: 50%;
+                  margin-left: 96px;
+                }
+            }
+
+            .pr-u-sm-100 & {
+              left: 100%;
+              transform: translateX(-50%);
+              margin-left: 100px;
+
+                &::before {
+                  right: 100%;
+                }
+
+                &::after {
+                  right: 50%;
+                  margin-right: 96px;
+                }
+            }
+        }
+
+        @include media-breakpoint-down(xs) {
+          bottom: 100%;
+          margin-bottom: 30px;
+          left: 0;
+          right: 0;
+
+            &::after {
+              top: 100%;
+              margin-top: 27px;
+            }
+        }
+    }
+
+    &__before,
+    &__year {
+      font-family: $headings-font-family;
+    }
+
+    &__before {
+      font-size: 13px;
+    }
+
+    &__year {
+      font-size: 20px;
+    }
+}

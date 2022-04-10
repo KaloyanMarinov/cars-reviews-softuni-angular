@@ -1,0 +1,130 @@
+.breadcrumbs {
+
+    @include media-breakpoint-up(sm) {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+    }
+
+    .sh--tr & {
+
+        @include media-breakpoint-up(md) {
+          top: 60px;
+        }
+
+        @include media-breakpoint-only(sm) {
+          top: 45px;
+        }
+
+        &__list {
+
+            > span {
+              color: $white;
+
+                &:not(:last-child) {
+
+                    &::before,
+                    &::after {
+                      background-color: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    &__list {
+      font-size: 0;
+
+        @include media-breakpoint-up(md) {
+          margin-left: 175px;
+        }
+
+        @include media-breakpoint-only(sm) {
+          margin-left: 100px;
+        }
+
+        > span {
+          display: block;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          color: $primary;
+
+            @include media-breakpoint-up(sm) {
+              font-size: 16px;
+            }
+
+            @include media-breakpoint-down(xs) {
+              font-size: 10px;
+            }
+
+            > span {
+              color: $gray;
+              text-decoration: underline;
+            }
+
+            &:not(:last-child) {
+              position: relative;
+
+                @include media-breakpoint-up(sm) {
+                  padding-right: 30px;
+                }
+
+                @include media-breakpoint-down(xs) {
+                  padding-right: 15px;
+                }
+
+                &::before,
+                &::after {
+                  content: '';
+                  position: absolute;
+                  top: 1px;
+                  bottom: 0;
+                  margin: auto;
+                  background: $primary;
+
+                    @include media-breakpoint-up(sm) {
+                      right: 12px;
+                      width: 6px;
+                      height: 2px;
+                      border-radius: 1px;
+                    }
+
+                    @include media-breakpoint-down(xs) {
+                      right: 5px;
+                      width: 4px;
+                      height: 1px;
+                    }
+                }
+
+                @include media-breakpoint-up(sm) {
+
+                    &::before {
+                      transform: translate(0, -2px) rotate(45deg);
+                    }
+
+                    &::after {
+                      transform: translate(0, 2px) rotate(-45deg);
+                    }
+                }
+
+                @include media-breakpoint-down(xs) {
+
+                    &::before {
+                      transform: translate(0, -1px) rotate(45deg);
+                    }
+
+                    &::after {
+                      transform: translate(0, 1px) rotate(-45deg);
+                    }
+                }
+            }
+        }
+
+        a {
+          color: inherit;
+          font-weight: $font-weight-bold;
+        }
+    }
+}

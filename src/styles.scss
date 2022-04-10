@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+// Tools
+@import './assets/styles/tools';
+
+// Settings
+@import './assets/styles/settings/fonts';
+@import './assets/styles/settings';
+
+// Generic
+@import './assets/styles/generic';
+
+// Elements
+@import './assets/styles/elements';
+
+// Objects
+@import './assets/styles/objects';
+
+// Components
+@import './assets/styles/components';
+
+// Utilities
+@import './assets/styles/utilities';

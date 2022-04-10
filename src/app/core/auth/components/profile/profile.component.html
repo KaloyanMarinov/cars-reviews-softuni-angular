@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row jc-c">
+    <div class="col-u-sm-6 py-60">
+      <h1 class="h2 mb-40 ta-c tc-b">Profile</h1>
+      <div class="row-u-sm">
+        <div class="col-u-sm-6 mb-20">
+          <p class="tt-u fs-14 mb-10 tc-p">First name<span class="fw-b">{{(user$ | async)?.firstname}}</span></p>
+        </div>
+
+        <div class="col-u-sm-6 mb-20">
+          <p class="tt-u fs-14 mb-10 tc-p">Last name: <span class="fw-b">{{(user$ | async)?.lastname}}</span></p>
+        </div>
+
+        <div class="col-u-sm-6 mb-20">
+          <p class="d-b tt-u fs-14 mb-10 tc-p">E-mail address: <span class="fw-b">{{(user$ | async)?.username}}</span></p>
+        </div>
+
+        <div class="col-u-sm-6 mb-20">
+          <p class="tt-u fs-14 mb-10 tc-p">Registered on:  <span class="fw-b">{{(user$ | async)?._kmd?.ect | date : 'dd.MM.Y'}}</span></p>
+        </div>
+      </div>
+
+      <button (click)="logout()" class="btn w-100 btn--r tc-w">Logout</button>
+    </div>
+  </div>
+</div>

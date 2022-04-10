@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="20px" viewBox="0 0 33 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>bg-flag</title>
+    <desc>Created with Sketch.</desc>
+    <g id="pages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product" transform="translate(-815.000000, -275.000000)" fill-rule="nonzero">
+            <g id="bg" transform="translate(815.000000, 275.000000)">
+                <g id="bg-flag">
+                    <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="33" height="20"></rect>
+                    <rect id="Rectangle" fill="#00966E" x="0" y="7" width="33" height="13"></rect>
+                    <rect id="Rectangle" fill="#D62612" x="0" y="13" width="33" height="7"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

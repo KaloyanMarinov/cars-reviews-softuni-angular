@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row jc-c">
+    <div class="col-u-sm-6 py-60">
+      <h1 class="h2 mb-20 ta-c tc-b">Login</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-20">
+          <label for="username" class="d-b tt-u fw-b fs-12 mb-10 tc-p">E-mail address <span class="required tc-r">*</span></label>
+          <input
+            id="username"
+            type="text"
+            class="field"
+            [class.invalid]="(f.username?.touched && f.username?.errors?.required || f.username?.errors?.username || f.username?.errors?.email) || (!f.username?.touched && formValid)"
+            formControlName="username"
+            autocomplete="off"
+            placeholder="E-mail address"
+          >
+
+          <ng-container *ngIf="f.username?.touched || formValid">
+            <p class="mt-10 tc-r" *ngIf="f.username?.errors?.required">Please provide a username.</p>
+            <p class="mt-10 tc-r" *ngIf="f.username?.errors?.email">Please enter valid e-mail address.</p>
+          </ng-container>
+        </div>
+
+
+        <div class="mb-20">
+          <label for="password" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Password<span class="required tc-r">*</span></label>
+          <input
+            id="password"
+            type="password"
+            class="field"
+            [class.invalid]="(f.password?.touched && f.password?.errors?.required || f.password?.errors?.password) || (!f.password?.touched && formValid)"
+            formControlName="password"
+            autocomplete="off"
+            placeholder="Password"
+          >
+
+          <ng-container *ngIf="f.password?.touched || formValid">
+            <p class="mt-10 tc-r" *ngIf="f.password?.errors?.required">Please provide a password.</p>
+            <p class="mt-10 tc-r" *ngIf="f.password?.errors?.minLength">Please enter valid e-mail address.</p>
+          </ng-container>
+        </div>
+
+        <p class="mb-20 ta-c">Don't have an account? <a [routerLink]="['/auth/signup']" class="tc-p fw-b">Sign up</a></p>
+
+        <app-message [message]="message"></app-message>
+
+        <button type="submit" class="btn btn--s w-100">Login</button>
+      </form>
+    </div>
+  </div>
+</div>

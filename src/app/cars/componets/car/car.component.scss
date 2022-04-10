@@ -1,0 +1,80 @@
+// Tools
+@import '../../../../assets/styles/tools';
+
+// Settings
+@import '../../../../assets/styles/settings';
+
+// Components
+
+.product {
+
+    &__header {
+
+        .price {
+
+            @include media-breakpoint-up(sm) {
+              font-size: 36px;
+
+                del {
+
+                    .amount {
+                      font-size: 24px;
+                    }
+                }
+            }
+
+            @include media-breakpoint-down(xs) {
+              font-size: 30px;
+
+                del {
+
+                    .amount {
+                      font-size: 20px;
+                    }
+                }
+            }
+        }
+
+        .added_to_cart {
+          display: none;
+        }
+    }
+
+    &__titles {
+
+        .container > & {
+
+            @include media-breakpoint-up(md) {
+              display: none;
+            }
+        }
+
+        .col-u-md-6 > & {
+
+            @include media-breakpoint-down(sm) {
+              display: none;
+            }
+        }
+    }
+
+    &__short-desc {
+
+        ul {
+          display: flex;
+          align-items: flex-start;
+          flex-wrap: wrap;
+
+            &:not(:last-child) {
+              margin-bottom: 0;
+            }
+
+            li {
+              margin-bottom: 15px;
+
+                &:not(:last-child) {
+                  margin-right: 15px;
+                }
+            }
+        }
+    }
+}

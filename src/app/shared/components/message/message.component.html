@@ -1,0 +1,5 @@
+<div
+  *ngIf="message?.messageText"
+  class="ta-s ta-c fw-sb mb-20"
+  [ngClass]="{ 'tc-s': message?.type, 'tc-r': !message?.type}"
+>{{message.messageText}}</div>

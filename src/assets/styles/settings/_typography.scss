@@ -1,0 +1,50 @@
+// WP THEMES
+$font-family: 'Source Sans Pro', sans-serif;
+$font-size-desktop: 16px;
+$font-size-mobile: 18px;
+$font-weight: 400;
+
+// Base
+$font-family-base: $font-family;
+$font-size-base: $font-size-desktop;
+$font-weight-base: $font-weight;
+$line-height-base: 1;
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+// Headings
+$headings-font-family: 'Lora', serif;
+$headings-line-height: 1.2;
+$headings-font-weights: (
+  'h1': 700,
+  'h2': 700,
+  'h3': 700,
+  'h4': 700,
+  'h5': 700,
+  'h6': 700,
+);
+
+$heading-desktop: (
+  'h1': 52px,
+  'h2': 40px,
+  'h3': 32px,
+  'h4': 28px,
+  'h5': 20px,
+  'h6': 16px,
+);
+
+$heading-mobile: (
+  'h1': 34px,
+  'h2': 27px,
+  'h3': 24px,
+  'h4': 22px,
+  'h5': 18px,
+  'h6': 16px,
+);
+
+$list-position: inside;
+
+$ul-list-style-type: none;
+$ol-list-style-type: decimal;

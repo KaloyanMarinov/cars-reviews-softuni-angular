@@ -1,0 +1,26 @@
+//
+// Background
+//
+.bg {
+  top: 0;
+  left: 0;
+
+    &__img {
+      @extend .ps-a, .m-a, .w-a, .min-w-100, .min-h-100, .mw-none;
+      top: 0;
+      bottom: 0;
+      left: -9999px;
+      right: -9999px;
+
+        @include media-breakpoint-up(lg) {
+          min-width: 1600px;
+        }
+
+        @include media-breakpoint-down(xs) {
+
+            &:not(.lazyload):not(.lazyloading) {
+              height: 100%;
+            }
+        }
+    }
+}

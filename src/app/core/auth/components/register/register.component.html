@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row jc-c">
+    <div class="col-u-sm-6 py-60">
+      <h1 class="h2 mb-20 ta-c tc-b">Sign Up</h1>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-20">
+          <label for="username" class="d-b tt-u fw-b fs-12 mb-10 tc-p">E-mail address <span class="required tc-r">*</span></label>
+          <input
+            id="username"
+            type="text"
+            class="field"
+            [class.invalid]="(f.username?.touched && f.username?.errors?.required || f.username?.errors?.username || f.username?.errors?.email) || (!f.username?.touched && formValid)"
+            formControlName="username"
+            autocomplete="off"
+            placeholder="E-mail address"
+          >
+
+          <ng-container *ngIf="f.username?.touched || formValid">
+            <p class="mt-10 tc-r" *ngIf="f.username?.errors?.required">Please provide a username.</p>
+            <p class="mt-10 tc-r" *ngIf="f.username?.errors?.email">Please enter valid e-mail address.</p>
+          </ng-container>
+        </div>
+
+        <div class="mb-20">
+          <label for="password" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Password<span class="required tc-r">*</span></label>
+          <input
+            id="password"
+            type="password"
+            class="field"
+            formControlName="password"
+            [class.invalid]="(f.password?.touched && f.password?.errors?.required || !!f.password?.errors?.minlength) || (!f.password?.touched && formValid)"
+            autocomplete="off"
+            placeholder="Password"
+          >
+
+          <ng-container *ngIf="f.password?.touched || formValid">
+            <p class="mt-10 tc-r" *ngIf="f.password?.errors?.required">Please provide a password.</p>
+            <p class="mt-10 tc-r" *ngIf="f.password?.errors?.minlength"> Password must be at least 6 characters long</p>
+          </ng-container>
+        </div>
+
+        <div class="mb-20">
+          <label for="firstname" class="d-b tt-u fw-b fs-12 mb-10 tc-p">First Name</label>
+          <input
+            id="firstname"
+            type="firstname"
+            class="field"
+            formControlName="firstname"
+            autocomplete="off"
+            placeholder="First Name"
+          >
+        </div>
+
+        <div class="mb-20">
+          <label for="lastname" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Last name</label>
+          <input
+            id="lastname"
+            type="lastname"
+            class="field"
+            formControlName="lastname"
+            autocomplete="off"
+            placeholder="Last Name"
+          >
+        </div>
+
+        <p class="mb-20 ta-c">Вече имате акаунт? <a [routerLink]="['/auth/login']" class="tc-p fw-b">Log In</a></p>
+
+        <app-message [message]="message"></app-message>
+
+        <button type="submit" class="btn btn--s w-100">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+body {
+
+    &:not(.sh--tr) {
+      padding-top: 46px;
+    }
+
+    &.cart-open::after,
+    &.search-open::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($black, .7);
+      z-index: 10;
+    }
+
+    @include media-breakpoint-up(md) {
+
+        &.mm-hover::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba($black, .7);
+          z-index: 10;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+
+        &.mm-open {
+          overflow: hidden;
+          height: 100vh;
+        }
+    }
+}
+
+.price {
+
+    .amount {
+      text-decoration: none;
+    }
+
+    del {
+      color: $danger;
+      font-weight: normal;
+
+        .amount {
+          color: inherit;
+          margin-right: 8px;
+        }
+    }
+
+    ins {
+      text-decoration: none;
+    }
+}
+
+.blockOverlay {
+  background: rgba($body-bg, .9) url('#{$images-icons}loader.svg') no-repeat center / 50px 50px !important;
+  opacity: 1 !important;
+}
+
+.remove {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('#{$images-icons}delete.svg') no-repeat center / auto 16px;
+  font-size: 0;
+}
+
+@media screen and (max-width: 600px) {
+  
+    #wpadminbar {
+      position: fixed;
+    }
+}

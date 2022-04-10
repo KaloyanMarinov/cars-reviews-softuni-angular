@@ -1,0 +1,14 @@
+<div class="lp h-u-sm-100 px-20 pb-20 d-u-sm-f f-u-sm-c ps-r ta-c bg-w br-6 of-h">
+  <figure *ngIf="car.pawPrintPicture" class="lp__thumb mb-15 mx-n20 of-h ps-r">
+    <a [routerLink]="[car._id]"><img src="{{car.pawPrintPicture._downloadURL}}" alt="{{car.brand}} {{car.model}}"></a>
+  </figure>
+
+  <h3 class="h4 pb-15 mb-u-sm-a tc-p"><a [routerLink]="[car._id]">{{car.brand}} {{car.model}} {{car.year}}</a></h3>
+
+  <div class="d-f jc-c">
+    <!-- TODO Rating & Raview count  -->
+    <app-rating [rating]="car.rating" [reviews]="2"></app-rating>
+  </div>
+
+  <a [routerLink]="[car._id]" class="btn btn--p tc-w w-100 br-p tt-u">Read Review</a>
+</div>

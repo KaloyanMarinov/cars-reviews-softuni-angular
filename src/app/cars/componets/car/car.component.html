@@ -1,0 +1,29 @@
+<article *ngIf="(car$ | async)?._id">
+  <header class="mb-50 pt-u-md-100 pt-o-sm-80 pt-o-xs-30 pb-u-md-50 pb-d-sm-30 bg-l">
+    <div class="container">
+      <div class="row">
+        <div class="col-u-sm-6">
+          <figure *ngIf="(car$ | async)?.pawPrintPicture">
+            <img src="{{(car$ | async)?.pawPrintPicture?._downloadURL}}" alt="{{(car$ | async)?.brand}} {{(car$ | async)?.model}}">
+          </figure>
+        </div>
+        <div class="col-u-sm-6">
+          <h1 class="h2 tc-p mb-u-sm-15 mb-o-xs-5">Review: {{(car$ | async)?.brand}} {{(car$ | async)?.model}} {{(car$ | async)?.year}}</h1>
+
+          <!-- TODO Rating & Raview count  -->
+          <app-rating [rating]="(car$ | async)?.rating" [reviews]="2"></app-rating>
+
+          <p class="mb-10 fs-18 fw-b">Make: {{(car$ | async)?.brand}}</p>
+          <p class="mb-10 fs-18 fw-b">Model: {{(car$ | async)?.model}}</p>
+          <p class="mb-10 fs-18 fw-b">Year: {{(car$ | async)?.year}}</p>
+
+          <div class="mt-20 wp-editor" [innerHTML]="(car$ | async)?.content"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <app-list-comments [comments]="(car$ | async)?.comments"></app-list-comments>
+</article>
+
+<ng-container *ngIf="!(car$ | async)?._id">loading</ng-container>

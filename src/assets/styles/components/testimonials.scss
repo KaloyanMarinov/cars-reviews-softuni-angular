@@ -1,0 +1,22 @@
+// Tools
+@import '../tools';
+
+// Settings
+@import '../settings';
+
+.quote {
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 33px;
+      background: url('#{$images-icons}quote.svg') no-repeat;
+    }
+
+    .wp-editor {
+      font-family: Calibri sans-serif;
+    }
+}

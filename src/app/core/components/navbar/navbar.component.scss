@@ -1,0 +1,172 @@
+// Tools
+@import '../../../../assets/styles/tools';
+
+// Settings
+@import '../../../../assets/styles/settings';
+
+.mn {
+  font-size: 14px;
+
+    a {
+      display: flex;
+      align-items: center;
+
+        @include media-breakpoint-down(sm) {
+          justify-content: center;
+          font-size: 20px;
+        }
+    }
+
+    li {
+
+        @include media-breakpoint-up(md) {
+
+            &:hover > .sub-menu-wrap {
+              display: block;
+            }
+        }
+    }
+
+    > li {
+
+        > a {
+          padding: 15px 20px;
+          color: $white;
+          text-transform: uppercase;
+
+            &:hover {
+              text-decoration: none;
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+
+            > a {
+              font-size: 16px;
+            }
+
+            &:hover > a {
+              color: $primary;
+              background: $white;
+            }
+        }
+
+        &.menu-item-has-children {
+
+            @include media-breakpoint-up(md) {
+
+                &:hover > a::after {
+                  border-top-color: $primary;
+                }
+
+                > a {
+
+                    &::after {
+                      content: '';
+                      width: 0;
+                      height: 0;
+                      margin-left: 8px;
+                      border-top: 5px solid $white;
+                      border-left: 5px solid transparent;
+                      border-right: 5px solid transparent;
+                    }
+                }
+
+                > .sub-menu-wrap {
+                  @include make-container;
+                  @include make-container-max-widths();
+
+                    @include media-breakpoint-up(md) {
+                      position: absolute;
+                      top: 100%;
+                      left: 0;
+                      right: 0;
+                      padding-top: 15px;
+                      padding-bottom: 15px;
+                      padding-left: 215px;
+
+                        &::before {
+                          content: '';
+                          position: absolute;
+                          top: 0;
+                          right: -9999px;
+                          bottom: 0;
+                          left: -9999px;
+                          z-index: -1;
+                          background: $white;
+                        }
+
+                        > .sub-menu {
+                          position: relative;
+                          width: 236px;
+
+                            > li {
+
+                                > a {
+                                  height: 44px;
+                                  padding: 0 13px;
+                                  text-transform: uppercase;
+                                  font-size: 18px;
+                                }
+
+                                &.menu-item-has-children {
+
+                                    > a  {
+                                      position: relative;
+                                      padding-right: 30px;
+
+                                        &::after {
+                                          content: '';
+                                          position: absolute;
+                                          top: 0;
+                                          right: 13px;
+                                          bottom: 0;
+                                          width: 0;
+                                          height: 0;
+                                          margin: auto;
+                                          border-top: 5px solid transparent;
+                                          border-left: 5px solid $primary;
+                                          border-bottom: 5px solid transparent;
+                                        }
+                                    }
+                                }
+
+                                &:hover {
+
+                                    > a {
+                                      background: $light;
+                                      text-decoration: none;
+                                    }
+                                }
+
+                                .sub-menu-wrap {
+                                  position: absolute;
+                                  top: 0;
+                                  left: 100%;
+                                  bottom: 0;
+                                  width: 100%;
+                                  background: $light;
+
+                                    .sub-menu {
+                                      padding: 5px 13px;
+                                      width: 100%;
+
+                                        a {
+                                          padding: 8px 0;
+                                          font-weight: $font-weight-base;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sub-menu-wrap {
+      display: none;
+      z-index: 1;
+    }
+  }
