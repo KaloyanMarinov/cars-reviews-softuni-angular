@@ -15,3 +15,12 @@ export interface ICar {
   },
   _kmd?: IKMD
 }
+
+export interface IAddCar {
+  brand: string,
+  model: string,
+  year: string,
+  rating: number,
+  content: string,
+  picture: File
+}

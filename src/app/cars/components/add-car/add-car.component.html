@@ -1,0 +1,102 @@
+<app-page-header></app-page-header>
+<div class="container">
+  <div class="row jc-c">
+    <div class="col-u-sm-6 py-40">
+      <h1 class="h2 mb-20 ta-c tc-b">Add new car</h1>
+      <p class="mb-15 ta-c fs-12">All fields marked with * are required</p>
+      <form [formGroup]="addCarForm" (ngSubmit)="onSubmit()">
+        <div class="mb-20">
+          <label for="brand" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Brand<span class="required tc-r">*</span></label>
+          <input
+            id="brand"
+            type="text"
+            class="field"
+            [class.invalid]="(f.brand?.touched && f.brand?.errors?.required) || (!f.brand?.touched && formValid)"
+            formControlName="brand"
+            autocomplete="off"
+            placeholder="Enter brand..."
+          >
+
+          <p class="mt-10 tc-r" *ngIf="(f.brand?.touched && f.brand?.errors?.required) || (!f.brand?.touched && formValid)">Please provide a brand.</p>
+        </div>
+
+        <div class="mb-20">
+          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Model<span class="required tc-r">*</span></label>
+          <input
+            id="model"
+            type="text"
+            class="field"
+            [class.invalid]="(f.model?.touched && f.model?.errors?.required) || (!f.model?.touched && formValid)"
+            formControlName="model"
+            autocomplete="off"
+            placeholder="Enter model..."
+          >
+
+          <p class="mt-10 tc-r" *ngIf="(f.model?.touched && f.model?.errors?.required) || (!f.model?.touched && formValid)">Please provide a model.</p>
+        </div>
+
+        <div class="mb-20">
+          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Year<span class="required tc-r">*</span></label>
+          <input
+            id="year"
+            type="text"
+            class="field"
+            [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
+            formControlName="year"
+            autocomplete="off"
+            placeholder="Enter year..."
+          >
+
+          <p class="mt-10 tc-r" *ngIf="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)">Please provide a year.</p>
+        </div>
+
+        <div class="mb-20">
+          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Rating<span class="required tc-r">*</span></label>
+          <select
+            id="rating"
+            class="field"
+            [class.invalid]="(f.rating?.touched && f.rating?.errors?.required)"
+            formControlName="rating"
+            autocomplete="off"
+          >
+            <option *ngFor="let i of ratingValues" [value]="i">{{i}}</option>
+          </select>
+
+          <p class="mt-10 tc-r" *ngIf="(f.rating?.touched && f.rating?.errors?.required) || (!f.rating?.touched && formValid)">Please provide a rating.</p>
+        </div>
+
+        <div class="mb-20">
+          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Review<span class="required tc-r">*</span></label>
+          <textarea
+            id="content"
+            class="field"
+            [class.invalid]="(f.content?.touched && f.content?.errors?.required || f.content?.errors?.content || f.content?.errors?.minlength) || (!f.content?.touched && formValid)"
+            formControlName="content"
+            autocomplete="off"
+            placeholder="Write review"
+          ></textarea>
+
+          <p class="mt-10 tc-r" *ngIf="(f.content?.touched && f.content?.errors?.required) || (!f.content?.touched && formValid)">Please provide a review.</p>
+        </div>
+
+        <div class="mb-20">
+          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Featured Image<span class="required tc-r">*</span></label>
+          <input
+            id="picture"
+            type="file"
+            class="field"
+            [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
+            formControlName="picture"
+            autocomplete="off"
+          >
+
+          <p class="mt-10 tc-r" *ngIf="(f.rating?.touched && f.rating?.errors?.required) || (!f.rating?.touched && formValid)">Please provide a rating.</p>
+        </div>
+
+        <app-message [message]="message"></app-message>
+
+        <button type="submit" class="btn btn--s w-100" [class.loading]="submiting">Add car</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { getIsAuthenticated } from '../../+store/auth/auth-selectors';
 
 @Component({
@@ -9,7 +9,7 @@ import { getIsAuthenticated } from '../../+store/auth/auth-selectors';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isLogged$!: Observable<boolean>
+  isLogged$!: Observable<boolean>;
 
   constructor(private store: Store) { }
 

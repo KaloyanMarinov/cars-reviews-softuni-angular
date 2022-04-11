@@ -31,10 +31,15 @@ export class AppHttpInterceptor implements HttpInterceptor {
             url: `${environment.baseUrl}/${req.url}`,
             headers: req.headers.set('Authorization', `Basic ${btoa(`${environment.appKey}:${environment.appSecret}`)}`)
           });
-        } else if (req.url.startsWith('user') ) {
+        } else if ( req.url.startsWith('user') ) {
           req = req.clone({
             url: `${environment.baseUrl}/${req.url}`,
             headers: req.headers.set('Authorization', `Kinvey ${token}`)
+          });
+        } else if (req.url.startsWith(`roles/${environment.appKey}`)) {
+          req = req.clone({
+            url: `${environment.baseUrl}/${req.url}`,
+            headers: req.headers.set('Authorization', `Basic ${btoa(`${environment.appKey}:${environment.masterSecret}`)}`)
           });
         }
 

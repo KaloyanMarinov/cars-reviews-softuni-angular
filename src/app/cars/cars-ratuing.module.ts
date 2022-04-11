@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CarComponent } from './componets/car/car.component';
-import { CarsListComponent } from './componets/cars-list/cars-list.component';
-import { carResolver } from './gards/car.resolver';
-import { carsResolver } from './gards/cars.resolver';
+import { AddCarComponent } from './components/add-car/add-car.component';
+import { CarComponent } from './components/car/car.component';
+import { CarsListComponent } from './components/cars-list/cars-list.component';
+import { AuthGuard } from './guards/auth.guard';
+import { carResolver } from './guards/car.resolver';
+import { carsResolver } from './guards/cars.resolver';
 
 const routes: Routes = [
   {
@@ -13,6 +15,12 @@ const routes: Routes = [
     resolve: [
       carsResolver
     ]
+  },
+  {
+    path: 'add',
+    pathMatch: 'full',
+    component: AddCarComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: ':id',

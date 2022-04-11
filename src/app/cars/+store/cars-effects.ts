@@ -5,7 +5,7 @@ import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AddCarComment, AddCarCommentSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess } from './cars-actions';
 import { CarsService } from '../cars.service';
 import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
-import { forkJoin } from 'rxjs';
+import { combineLatest, forkJoin } from 'rxjs';
 import { CommentsService } from 'src/app/shared/services/comments.service';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class CarsEffects {
     this.actions$.pipe(
       ofType(Cars),
       switchMap(({ data }) =>
-        forkJoin(
+        combineLatest(
           this.carsService.getCarsCount(),
           this.carsService.getCars(data),
         ).pipe(
@@ -36,7 +36,7 @@ export class CarsEffects {
     this.actions$.pipe(
       ofType(Car),
       switchMap(({ id }) =>
-        forkJoin(
+        combineLatest(
           this.carsService.getCar(id),
           this.commentsService.getCommentByPost(id),
         ).pipe(
@@ -65,7 +65,7 @@ export class CarsEffects {
   addComment$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AddCarComment),
-      switchMap(({data}) =>
+      switchMap(({ data }) =>
         this.commentsService.addComment(data).pipe(
           switchMap((comment) => [
             AddCarCommentSuccess({ comment }),

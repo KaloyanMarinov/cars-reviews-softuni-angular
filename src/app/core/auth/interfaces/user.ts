@@ -1,4 +1,5 @@
 import { IKMD } from "src/app/shared/interfaces";
+import { IRole } from ".";
 
 export interface ILogin {
   username: string;
@@ -15,6 +16,7 @@ export interface IRegister {
 export interface IUser {
   _id: string;
   username: string;
+  roles: string[];
   firstname?: string;
   lastname?: string;
   _kmd?: IKMD;

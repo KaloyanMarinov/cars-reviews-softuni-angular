@@ -33,7 +33,9 @@ export class CarsHttpInterceptor implements HttpInterceptor {
           } else {
             req = req.clone({
               url: `${environment.baseUrl}/${req.url}`,
-              headers: req.headers.set('Authorization', `Kinvey ${token}`)
+              headers: req.headers
+                .set('Authorization', `Kinvey ${token}`)
+                .set('Content-Type', 'application/json')
             });
           }
         }

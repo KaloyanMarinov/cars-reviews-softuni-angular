@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IAddComment, IComment } from 'src/app/shared/interfaces';
-import { ICar } from '../interfaces/cars';
+import { IAddCar, ICar } from '../interfaces/cars';
 
 export const ActionTypes = {
   Cars: '[CARS] Cars',
@@ -9,6 +9,9 @@ export const ActionTypes = {
   Car: '[CARS] Car',
   CarSuccess: '[CARS] Car Success',
   CarClear: '[CARS] Cars Clear',
+
+  AddCar: '[CARS] Add Car',
+  AddCarSuccess: '[CARS] Add Car Success',
 
   AddCarComment: '[CARS] Add Car Comments',
   AddCarCommentSuccess: '[CARS] Add Car Comments Success',
@@ -27,8 +30,6 @@ export const CarsSuccess = createAction(
   props<{ cars: ICar[], count: number }>()
 );
 
-export const CarClear = createAction(ActionTypes.CarClear);
-
 export const Car = createAction(
   ActionTypes.Car,
   props<{ id: string }>()
@@ -36,6 +37,18 @@ export const Car = createAction(
 
 export const CarSuccess = createAction(
   ActionTypes.CarSuccess,
+  props<{ car: ICar }>()
+);
+
+export const CarClear = createAction(ActionTypes.CarClear);
+
+export const AddCar = createAction(
+  ActionTypes.AddCar,
+  props<{ data: IAddCar }>()
+);
+
+export const AddCarsSuccess = createAction(
+  ActionTypes.AddCarSuccess,
   props<{ car: ICar }>()
 );
 

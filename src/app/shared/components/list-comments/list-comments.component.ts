@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommentsResolver } from 'src/app/cars/gards/comments.resolver';
 import { IComment } from '../../interfaces';
 
 @Component({

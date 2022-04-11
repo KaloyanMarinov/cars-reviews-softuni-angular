@@ -1,6 +1,13 @@
 <ul class="mn fw-b d-u-md-f ai-u-md-c jc-u-md-c ta-d-sm-c">
   <!-- <li><a [routerLink]="['/']" routerLinkActive="current-menu-item">Home</a></li> -->
-  <li><a [routerLink]="['/cars']" routerLinkActive="current-menu-item">Cars</a></li>
+  <li [class.menu-item-has-children]="isAdmin$ | async">
+    <a [routerLink]="['/cars']" routerLinkActive="current-menu-item">Cars</a>
+    <div *ngIf="isAdmin$ | async" class="sub-menu-wrap">
+      <ul class="sub-menu">
+        <li><a [routerLink]="['/cars/add']">Add New Car</a></li>
+      </ul>
+    </div>
+  </li>
   <li><a [routerLink]="['/about']" routerLinkActive="current-menu-item">About Us</a></li>
   <li><a [routerLink]="['/contacts']" routerLinkActive="current-menu-item">Contacts</a></li>
 </ul>

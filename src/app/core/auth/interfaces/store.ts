@@ -1,6 +1,6 @@
-import { IUser } from ".";
+import { IRole, IUser } from ".";
 
 export interface IAuthState {
-  authToken: string | null;
-  user: IUser | null;
+  authToken: string;
+  user: IUser;
 }

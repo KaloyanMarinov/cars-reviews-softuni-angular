@@ -8,16 +8,28 @@ import {
   ProfileSuccess,
   Register,
   LogoutSuccess,
+  UserRoleSuccess,
 } from './auth-actions';
 
 const initialState: IAuthState = {
-  user: null,
-  authToken: ''
+  user: {
+    _id: '',
+    username: '',
+    roles: []
+  },
+  authToken: '',
 };
 
 export const authReducer = createReducer<IAuthState>(
   initialState,
   on(SetToken, (state, { authToken }) => ({ ...state, authToken })),
+  on(UserRoleSuccess, (state, { role }) => ({
+    ...state,
+    user: {
+      ...state.user,
+      roles: [...(state.user.roles || []), role.name]
+    }
+  })),
   on(Login, state => (state)),
   on(LoginSuccess, (state, { authToken, user }) => ({
     ...state,

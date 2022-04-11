@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
-import { Login, LoginSuccess, Logout, LogoutSuccess, ProfileSuccess, Register, SetToken } from './auth-actions';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Login, LoginSuccess, Logout, LogoutSuccess, ProfileSuccess, Register, SetToken, UserRole, UserRoleSuccess } from './auth-actions';
 
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, merge, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { Store } from '@ngrx/store';
@@ -26,7 +26,15 @@ export class AuthEffects {
       ofType(SetToken),
       switchMap(() =>
         this.authService.me().pipe(
-          map((user) => ProfileSuccess({ user })),
+          tap((user) => {
+            if (user._kmd?.roles?.length) {
+              user._kmd.roles.map(role => {
+                if (role.roleId)
+                  this.store.dispatch(UserRole({ roleId: role.roleId }))
+              })
+            }
+          }),
+          map(user => ProfileSuccess({ user })),
           catchError((err) => [ActionFailed({ error: err.error })])
         )
       )
@@ -38,11 +46,31 @@ export class AuthEffects {
       ofType(Login),
       switchMap((data) =>
         this.authService.login(data).pipe(
+          tap(({user}) => {
+            if (user._kmd?.roles?.length) {
+              user._kmd.roles.map(role => {
+                if (role.roleId)
+                  this.store.dispatch(UserRole({ roleId: role.roleId }))
+              })
+            }
+          }),
           map(({ authToken, user }) => LoginSuccess({ authToken, user })),
           tap(({ authToken }) => {
             localStorage.setItem('authToken', authToken);
             this.router.navigate(['/']);
           }),
+          catchError((err) => [ActionFailed({ error: err.error })])
+        )
+      )
+    )
+  )
+
+  userRole$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserRole),
+      mergeMap(({roleId}) =>
+        this.authService.getRole(roleId).pipe(
+          map((role) => UserRoleSuccess({role})),
           catchError((err) => [ActionFailed({ error: err.error })])
         )
       )

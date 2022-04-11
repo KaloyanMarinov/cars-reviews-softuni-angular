@@ -1,9 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { IUser } from '../../auth/interfaces';
+import { IRole, IUser } from '../../auth/interfaces';
 
 export const ActionTypes = {
   SetToken: '[AUTH] SetToken',
-  AuthFailed: '[AUTH] Action Failed',
+  UserRole: '[AUTH] User Roles',
+  UserRoleSuccess: '[AUTH] User Roles Success',
 
   Login: '[AUTH] Login',
   LoginSuccess: '[AUTH] Login Success',
@@ -20,6 +21,16 @@ export const ActionTypes = {
 export const SetToken = createAction(
   ActionTypes.SetToken,
   props<{ authToken: string }>()
+);
+
+export const UserRole = createAction(
+  ActionTypes.UserRole,
+  props<{ roleId: string }>()
+);
+
+export const UserRoleSuccess = createAction(
+  ActionTypes.UserRoleSuccess,
+  props<{ role: IRole }>()
 );
 
 export const Login = createAction(
