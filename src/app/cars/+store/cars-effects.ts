@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { AddCarComment, AddCarCommentSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess } from './cars-actions';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { AddCarComment, AddCarCommentSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
 import { CarsService } from '../cars.service';
 import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
 import { combineLatest, forkJoin } from 'rxjs';
@@ -40,7 +40,7 @@ export class CarsEffects {
           this.carsService.getCar(id),
           this.commentsService.getCommentByPost(id),
         ).pipe(
-          switchMap(([car, comments]) => [
+          mergeMap(([car, comments]) => [
             CarSuccess({ car }),
             CarCommentsSuccess({ comments })
           ]),
@@ -49,6 +49,21 @@ export class CarsEffects {
       )
     )
   )
+
+  // uploadImage$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(UploadCarImage),
+  //     switchMap(({file}) =>
+  //       this.carsService.uploadImage(file).pipe(
+  //         tap((file) => {
+  //           this.carsService.googleDriveUploade(file).subscribe();
+  //         }),
+  //         map((file) => UploadCarImageSuccess({ file })),
+  //         catchError((err) => [ActionFailed({ error: err.error })])
+  //       )
+  //     )
+  //   )
+  // );
 
   carComments$ = createEffect(() =>
     this.actions$.pipe(

@@ -83,11 +83,12 @@
           <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Featured Image<span class="required tc-r">*</span></label>
           <input
             id="picture"
-            type="file"
+            type="url"
             class="field"
             [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
             formControlName="picture"
             autocomplete="off"
+            accept="image/png, image/jpeg"
           >
 
           <p class="mt-10 tc-r" *ngIf="(f.rating?.touched && f.rating?.errors?.required) || (!f.rating?.touched && formValid)">Please provide a rating.</p>

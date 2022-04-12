@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { getAppMessage } from 'src/app/+store/app-selectors';
 import { IMessage } from 'src/app/shared/interfaces';
-import { AddCar } from '../../+store/cars-actions';
+import { UploadCarImage } from '../../+store/cars-actions';
+import { IUploadImage } from '../../interfaces';
 
 @Component({
   selector: 'app-add-car',
@@ -18,6 +19,7 @@ export class AddCarComponent implements OnInit {
   ratingValues = Array(5).fill(0).map((_, i) => i + 1);
   submiting = false;
   sub!: Subscription;
+  image!: IUploadImage;
 
   constructor(private store: Store) { }
 
@@ -46,7 +48,7 @@ export class AddCarComponent implements OnInit {
     if (this.formValid) {
       this.formValid = false;
       this.submiting = true;
-      this.store.dispatch(AddCar(data));
+      // this.store.dispatch(AddCar(data));
     } else {
       this.submiting = true;
       this.formValid = true;

@@ -38,6 +38,14 @@ export class CarsHttpInterceptor implements HttpInterceptor {
                 .set('Content-Type', 'application/json')
             });
           }
+        } else if (req.url.startsWith(`blob`)) {
+          req = req.clone({
+            url: `${environment.baseUrl}/${req.url}`,
+            headers: req.headers
+              .set('Authorization', `Kinvey ${token}`)
+              .set('Content-Type', 'application/json')
+              .set('X-Kinvey-Content-Type', 'image/png; image/jpeg')
+          });
         }
 
         return next.handle(req);

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IAddComment, IComment } from 'src/app/shared/interfaces';
-import { IAddCar, ICar } from '../interfaces/cars';
+import { IAddCar, ICar, IUploadImage, IUploadImageSuccess } from '../interfaces/cars';
 
 export const ActionTypes = {
   Cars: '[CARS] Cars',
@@ -17,7 +17,10 @@ export const ActionTypes = {
   AddCarCommentSuccess: '[CARS] Add Car Comments Success',
 
   CarComments: '[CARS] Car Comments',
-  CarCommentsSuccess: '[CARS] Car Comments Cussess',
+  CarCommentsSuccess: '[CARS] Car Comments Success',
+
+  UploadCarImage: '[CARS] Upload Image',
+  UploadCarImageSuccess: '[CARS] Upload Image Success',
 };
 
 export const Cars = createAction(
@@ -72,4 +75,13 @@ export const CarCommentsSuccess = createAction(
   props<{ comments: IComment[] }>()
 );
 
+export const UploadCarImage = createAction(
+  ActionTypes.UploadCarImage,
+  props<{file: IUploadImage}>()
+);
+
+export const UploadCarImageSuccess = createAction(
+  ActionTypes.UploadCarImageSuccess,
+  props<{file: IUploadImageSuccess}>()
+);
 

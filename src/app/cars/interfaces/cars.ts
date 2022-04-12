@@ -9,7 +9,7 @@ export interface ICar {
   rating: number,
   content: string,
   comments: IComment[],
-  pawPrintPicture?: IPicture,
+  pawPrintPicture?: string,
   _acl?: {
     creator: string
   },
@@ -23,4 +23,30 @@ export interface IAddCar {
   rating: number,
   content: string,
   picture: File
+}
+
+export interface IUploadImage {
+  mimeType: string;
+  size: number;
+  _acl: {
+    gr: true;
+  };
+  _filename: string;
+  _public: true;
+}
+
+export interface IUploadImageSuccess {
+  mimeType: string;
+  size: number;
+  _acl: {
+    gr: boolean;
+    creator: string;
+  }
+  _expiresAt: string;
+  _filename: string;
+  _id: string;
+  _kmd: IKMD;
+  _public: boolean
+  _requiredHeaders: {};
+  _uploadURL: string
 }

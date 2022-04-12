@@ -38,15 +38,17 @@ export class AddCommentComponent implements OnInit {
     );
 
     this.sub.add(this.store.select(getAppMessage).subscribe(message => {
-      this.formValid = !message.type;
-      this.submiting = false;
-      this.commentForm.reset();
-      this.f?.rating.setValue(5);
-      this.message = message;
-      this.commentForm.removeValidators;
-      setTimeout(() => {
-        this.store.dispatch(ClearMessage());
-      }, 1500);
+      if (message.type) {
+        this.formValid = !message.type;
+        this.submiting = false;
+        this.commentForm.reset();
+        this.f?.rating.setValue(5);
+        this.message = message;
+        this.commentForm.removeValidators;
+        setTimeout(() => {
+          this.store.dispatch(ClearMessage());
+        }, 1500);
+      }
     }));
 
     this.commentForm = new FormGroup({
