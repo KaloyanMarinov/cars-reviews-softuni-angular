@@ -2,19 +2,22 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { AddCarComment, AddCarCommentSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
+import { AddCar, AddCarComment, AddCarCommentSuccess, AddCarSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, DeleteCar, DeleteSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
 import { CarsService } from '../cars.service';
 import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
-import { combineLatest, forkJoin } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { CommentsService } from 'src/app/shared/services/comments.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class CarsEffects {
+  deleteCarID!: string;
 
   constructor(
     private actions$: Actions,
     private carsService: CarsService,
-    private commentsService: CommentsService
+    private commentsService: CommentsService,
+    private router: Router
   ) { }
 
   cars$ = createEffect(() =>
@@ -50,20 +53,69 @@ export class CarsEffects {
     )
   )
 
-  // uploadImage$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(UploadCarImage),
-  //     switchMap(({file}) =>
-  //       this.carsService.uploadImage(file).pipe(
-  //         tap((file) => {
-  //           this.carsService.googleDriveUploade(file).subscribe();
-  //         }),
-  //         map((file) => UploadCarImageSuccess({ file })),
-  //         catchError((err) => [ActionFailed({ error: err.error })])
-  //       )
-  //     )
-  //   )
-  // );
+  addCar$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AddCar),
+      switchMap(({ data }) =>
+        this.carsService.addCar(data).pipe(
+          switchMap((car) => [
+            AddCarSuccess({ car }),
+            ActionSuccess({ error: { description: 'Add car added successfully.' } }),
+          ]),
+          catchError((err) => [ActionFailed({ error: err.error })])
+        )
+      ),
+    )
+  )
+
+  addCarCusses$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AddCarSuccess),
+      tap(({ car }) => setTimeout(() => {
+        this.router.navigate(['/cars/', car._id])
+      }, 1500))
+    ), { dispatch: false }
+  )
+
+  deleteCar$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DeleteCar),
+      tap(({ id }) => this.deleteCarID = id),
+      switchMap(({ id }) =>
+        this.carsService.deleteCar(id).pipe(
+          switchMap(({count}) => [
+            DeleteSuccess({ count, id: this.deleteCarID }),
+            ActionSuccess({ error: { description: `The car deleted successfully.` } }),
+          ]),
+          catchError((err) => [ActionFailed({ error: err.error })])
+        )
+      ),
+    )
+  )
+
+  deleteCarCusses$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DeleteSuccess),
+      tap(() => setTimeout(() => {
+        this.router.navigate(['/'])
+      }, 1500))
+    ), { dispatch: false }
+  )
+
+  uploadImage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UploadCarImage),
+      switchMap(({ file }) =>
+        this.carsService.uploadImage(file).pipe(
+          tap((file) => {
+            this.carsService.googleDriveUploade(file).subscribe();
+          }),
+          map((file) => UploadCarImageSuccess({ file })),
+          catchError((err) => [ActionFailed({ error: err.error })])
+        )
+      )
+    )
+  );
 
   carComments$ = createEffect(() =>
     this.actions$.pipe(

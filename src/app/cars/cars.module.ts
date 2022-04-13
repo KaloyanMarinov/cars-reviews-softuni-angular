@@ -16,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AddCarComponent } from './components/add-car/add-car.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     CarsRoutingModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    CKEditorModule
   ],
   providers: [
     CarsService,

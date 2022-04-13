@@ -39,7 +39,7 @@
           <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Year<span class="required tc-r">*</span></label>
           <input
             id="year"
-            type="text"
+            type="number"
             class="field"
             [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
             formControlName="year"
@@ -67,31 +67,29 @@
 
         <div class="mb-20">
           <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Review<span class="required tc-r">*</span></label>
-          <textarea
-            id="content"
-            class="field"
-            [class.invalid]="(f.content?.touched && f.content?.errors?.required || f.content?.errors?.content || f.content?.errors?.minlength) || (!f.content?.touched && formValid)"
-            formControlName="content"
-            autocomplete="off"
-            placeholder="Write review"
-          ></textarea>
+          <ckeditor [editor]="Editor" [config]="{
+            toolbar: [
+            'heading', '|', 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '|', 'CopyFormatting', 'RemoveFormat', 'NumberedList','BulletedList', '|', 'Outdent', 'Indent', '|',
+            'Blockquote', 'Link', 'Unlink', 'Anchor',
+            'Image', 'Table', 'HorizontalRule',
+            'Smiley', 'Styles', 'Format', 'Font', 'FontSize', 'TextColor', 'BGColor'
+          ]
+          }" formControlName="content"></ckeditor>
 
           <p class="mt-10 tc-r" *ngIf="(f.content?.touched && f.content?.errors?.required) || (!f.content?.touched && formValid)">Please provide a review.</p>
         </div>
 
         <div class="mb-20">
-          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Featured Image<span class="required tc-r">*</span></label>
+          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Featured Image</label>
           <input
             id="picture"
             type="url"
             class="field"
             [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
-            formControlName="picture"
+            formControlName="pawPrintPicture"
             autocomplete="off"
             accept="image/png, image/jpeg"
           >
-
-          <p class="mt-10 tc-r" *ngIf="(f.rating?.touched && f.rating?.errors?.required) || (!f.rating?.touched && formValid)">Please provide a rating.</p>
         </div>
 
         <app-message [message]="message"></app-message>

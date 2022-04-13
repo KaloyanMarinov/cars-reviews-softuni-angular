@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ICar, IUploadImage, IUploadImageSuccess } from './interfaces';
+import { IAddCar, ICar, IUploadImage, IUploadImageSuccess } from './interfaces';
 
 @Injectable()
 export class CarsService {
@@ -21,6 +21,14 @@ export class CarsService {
 
   getCar(id: string): Observable<ICar> {
     return this.http.get<ICar>(`${this.CARS_BASE_URL}/${id}`);
+  }
+
+  addCar(data: IAddCar): Observable<ICar> {
+    return this.http.post<ICar>(`${this.CARS_BASE_URL}`, data);
+  }
+
+  deleteCar(id: string): Observable<{count: number}> {
+    return this.http.delete<{count: number}>(`${this.CARS_BASE_URL}?query={"_id":"${id}"}`);
   }
 
   uploadImage(file: IUploadImage): Observable<IUploadImageSuccess> {

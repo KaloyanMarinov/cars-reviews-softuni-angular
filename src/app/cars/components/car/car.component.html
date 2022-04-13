@@ -10,7 +10,7 @@
           </figure>
         </div>
         <div class="col-u-sm-6">
-          <h1 class="h2 tc-p mb-u-sm-15 mb-o-xs-5">Review: {{(car$ | async)?.brand}} {{(car$ | async)?.model}} {{(car$ | async)?.year}}</h1>
+          <h1 class="h2 tc-p mb-u-sm-15 mb-o-xs-5">Review: {{(car$ | async)?.brand}} {{(car$ | async)?.model}} {{(car$ | async)?.year}}{{(car$ | async)?._id}}</h1>
 
           <div class="d-f ai-c mb-20">
             <app-rating [rating]="(car$ | async)?.rating"></app-rating>
@@ -22,6 +22,11 @@
           <p class="mb-10 fs-18 fw-b">Year: {{(car$ | async)?.year}}</p>
 
           <div class="mt-20 wp-editor" [innerHTML]="(car$ | async)?.content"></div>
+
+          <div *ngIf="isAdmin$ | async" class="d-f mt-15">
+            <a href="#" class="btn btn--s tc-w mr-10">Edit</a>
+            <button *ngIf="(car$ | async) as car" (click)="deleteCar(car._id)" class="btn btn--r tc-w">Delete</button>
+          </div>
         </div>
       </div>
     </div>

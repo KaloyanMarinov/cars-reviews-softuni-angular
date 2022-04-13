@@ -19,10 +19,10 @@ export interface ICar {
 export interface IAddCar {
   brand: string,
   model: string,
-  year: string,
+  year: number,
   rating: number,
   content: string,
-  picture: File
+  pawPrintPicture: string
 }
 
 export interface IUploadImage {

@@ -19,6 +19,9 @@ export const ActionTypes = {
   CarComments: '[CARS] Car Comments',
   CarCommentsSuccess: '[CARS] Car Comments Success',
 
+  DeleteCar: '[CARS] Delete Car',
+  DeleteSuccess: '[CARS] Delete Car Success',
+
   UploadCarImage: '[CARS] Upload Image',
   UploadCarImageSuccess: '[CARS] Upload Image Success',
 };
@@ -50,7 +53,7 @@ export const AddCar = createAction(
   props<{ data: IAddCar }>()
 );
 
-export const AddCarsSuccess = createAction(
+export const AddCarSuccess = createAction(
   ActionTypes.AddCarSuccess,
   props<{ car: ICar }>()
 );
@@ -75,13 +78,23 @@ export const CarCommentsSuccess = createAction(
   props<{ comments: IComment[] }>()
 );
 
+export const DeleteCar = createAction(
+  ActionTypes.DeleteCar,
+  props<{ id: string }>()
+);
+
+export const DeleteSuccess = createAction(
+  ActionTypes.DeleteSuccess,
+  props<{ count: number, id: string }>()
+);
+
 export const UploadCarImage = createAction(
   ActionTypes.UploadCarImage,
-  props<{file: IUploadImage}>()
+  props<{ file: IUploadImage }>()
 );
 
 export const UploadCarImageSuccess = createAction(
   ActionTypes.UploadCarImageSuccess,
-  props<{file: IUploadImageSuccess}>()
+  props<{ file: IUploadImageSuccess }>()
 );
 
