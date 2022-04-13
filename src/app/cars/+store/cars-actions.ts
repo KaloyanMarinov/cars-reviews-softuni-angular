@@ -20,7 +20,9 @@ export const ActionTypes = {
   CarCommentsSuccess: '[CARS] Car Comments Success',
 
   DeleteCar: '[CARS] Delete Car',
-  DeleteSuccess: '[CARS] Delete Car Success',
+  DeleteCarSuccess: '[CARS] Delete Car Success',
+
+  DeleteCarComments: '[CARS] Delete Car Comments',
 
   UploadCarImage: '[CARS] Upload Image',
   UploadCarImageSuccess: '[CARS] Upload Image Success',
@@ -83,9 +85,14 @@ export const DeleteCar = createAction(
   props<{ id: string }>()
 );
 
-export const DeleteSuccess = createAction(
-  ActionTypes.DeleteSuccess,
+export const DeleteCarSuccess = createAction(
+  ActionTypes.DeleteCarSuccess,
   props<{ count: number, id: string }>()
+);
+
+export const DeleteCarComments = createAction(
+  ActionTypes.DeleteCarComments,
+  props<{ id: string }>()
 );
 
 export const UploadCarImage = createAction(

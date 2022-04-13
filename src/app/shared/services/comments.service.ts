@@ -17,4 +17,8 @@ export class CommentsService {
   getCommentByPost(id: string): Observable<IComment[]> {
     return this.http.get<IComment[]>(`${this.COMMENTS_BASE_URL}?query={"post_id": "${id}"}`);
   }
+
+  deleteCommentsByPost(id: string): Observable<{ count: number }> {
+    return this.http.delete<{ count: number }>(`${this.COMMENTS_BASE_URL}?query={"post_id": "${id}"}`);
+  }
 }

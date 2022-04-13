@@ -10,7 +10,7 @@
           </figure>
         </div>
         <div class="col-u-sm-6">
-          <h1 class="h2 tc-p mb-u-sm-15 mb-o-xs-5">Review: {{(car$ | async)?.brand}} {{(car$ | async)?.model}} {{(car$ | async)?.year}}{{(car$ | async)?._id}}</h1>
+          <h1 class="h2 tc-p mb-u-sm-15 mb-o-xs-5">Review: {{(car$ | async)?.brand}} {{(car$ | async)?.model}} {{(car$ | async)?.year}}</h1>
 
           <div class="d-f ai-c mb-20">
             <app-rating [rating]="(car$ | async)?.rating"></app-rating>

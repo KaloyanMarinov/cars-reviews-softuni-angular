@@ -43,12 +43,14 @@ export class AddCommentComponent implements OnInit {
         this.submiting = false;
         this.commentForm.reset();
         this.f?.rating.setValue(5);
-        this.message = message;
         this.commentForm.removeValidators;
+
         setTimeout(() => {
           this.store.dispatch(ClearMessage());
         }, 1500);
       }
+
+      this.message = message;
     }));
 
     this.commentForm = new FormGroup({

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { AddCar, AddCarComment, AddCarCommentSuccess, AddCarSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, DeleteCar, DeleteSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
+import { AddCar, AddCarComment, AddCarCommentSuccess, AddCarSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, DeleteCar, DeleteCarComments, DeleteCarSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
 import { CarsService } from '../cars.service';
 import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
 import { combineLatest } from 'rxjs';
@@ -83,22 +83,34 @@ export class CarsEffects {
       tap(({ id }) => this.deleteCarID = id),
       switchMap(({ id }) =>
         this.carsService.deleteCar(id).pipe(
-          switchMap(({count}) => [
-            DeleteSuccess({ count, id: this.deleteCarID }),
-            ActionSuccess({ error: { description: `The car deleted successfully.` } }),
+          mergeMap(({ count }) => [
+            DeleteCarSuccess({ count, id: this.deleteCarID }),
+            DeleteCarComments({ id: this.deleteCarID }),
           ]),
+          tap(() => ActionSuccess({ error: { description: `The car deleted successfully.` } })),
           catchError((err) => [ActionFailed({ error: err.error })])
         )
       ),
     )
   )
 
-  deleteCarCusses$ = createEffect(() =>
+  deleteCarSuccess$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(DeleteSuccess),
+      ofType(DeleteCarSuccess),
       tap(() => setTimeout(() => {
         this.router.navigate(['/'])
       }, 1500))
+    ), { dispatch: false }
+  )
+
+  deleteCarComments$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DeleteCarComments),
+      switchMap(({ id }) =>
+        this.commentsService.deleteCommentsByPost(id).pipe(
+          catchError((err) => [ActionFailed({ error: err.error })])
+        )
+      ),
     ), { dispatch: false }
   )
 
