@@ -1,1 +1,19 @@
 <app-page-header [title]="'Car Reviews'"></app-page-header>
+
+<div class="py-30">
+  <div class="container">
+    <h3 class="tc-p">Top Cars</h3>
+  </div>
+  <app-cars-list [cars]="topCars"></app-cars-list>
+
+  <p class="ta-c"><a [routerLink]="['/cars']" class="btn btn--s btn--260 mb-30 tt-u tc-w br-p">See All Cars</a></p>
+</div>
+
+<div class="py-30">
+  <div class="container">
+    <h3 class="tc-p">Latest Cars</h3>
+  </div>
+  <app-cars-list [cars]="latestCars"></app-cars-list>
+
+  <p class="ta-c"><a [routerLink]="['/cars']" class="btn btn--s btn--260 mb-30 tt-u tc-w br-p">See All Cars</a></p>
+</div>

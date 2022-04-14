@@ -13,7 +13,6 @@ import { AuthService } from './auth/auth.service';
 import { AppHttpInterceptor } from './interseptios/app-http-interseptor';
 import { CarsHttpInterceptor } from './interseptios/cars-http-interseptor';
 import { CommentsHttpInterceptor } from './interseptios/comments-http-interseptor';
-import { PagesModule } from '../pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { PagesModule } from '../pages/pages.module';
     CommonModule,
     RouterModule,
     HttpClientModule,
-    PagesModule
   ],
   exports: [
     HeaderComponent,

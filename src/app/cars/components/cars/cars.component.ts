@@ -5,12 +5,12 @@ import { getCarsAll } from '../../+store/cars-selectors';
 import { ICar, ICarsState } from '../../interfaces';
 
 @Component({
-  selector: 'app-cars-list',
-  templateUrl: './cars-list.component.html',
-  styleUrls: ['./cars-list.component.scss']
+  selector: 'app-cars',
+  templateUrl: './cars.component.html',
+  styleUrls: ['./cars.component.scss']
 })
-export class CarsListComponent implements OnInit {
-  cars$!: Observable<ICar[] | null>;
+export class CarsComponent implements OnInit {
+  cars$!: Observable<ICar[]>;
 
   constructor(private store: Store<ICarsState>) { }
   ngOnInit(): void {

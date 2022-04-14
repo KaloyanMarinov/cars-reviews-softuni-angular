@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/auth/auth.cuard';
 import { AboutComponent } from './pages/components/about/about.component';
 import { ContactComponent } from './pages/components/contact/contact.component';
-import { AuthGuard } from './core/auth/auth.cuard';
 import { HomeComponent } from './pages/components/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: HomeComponent
+    component: HomeComponent,
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
   },
   {
     path: 'auth',
@@ -23,15 +24,17 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
   },
   {
     path: 'contacts',
-    component: ContactComponent
+    component: ContactComponent,
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,  {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

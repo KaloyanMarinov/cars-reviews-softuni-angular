@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IAddCar, ICar, IUploadImage, IUploadImageSuccess } from './interfaces';
+import { ICar, IAddCar, IUploadImage, IUploadImageSuccess } from '../interfaces';
 
 @Injectable()
 export class CarsService {

@@ -7,6 +7,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { CarsListComponent } from './components/cars-list/cars-list.component';
+import { CarItemComponent } from './components/car-item/car-item.component';
 
 
 
@@ -16,6 +18,8 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     RatingComponent,
     LoaderComponent,
     PageHeaderComponent,
+    CarsListComponent,
+    CarItemComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,8 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     RatingComponent,
     LoaderComponent,
     PageHeaderComponent,
+    CarsListComponent,
+    CarItemComponent,
   ]
 })
 export class SharedModule { }

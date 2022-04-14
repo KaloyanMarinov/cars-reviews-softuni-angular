@@ -16,7 +16,7 @@ export class carsResolver implements Resolve<boolean> {
       select(getCarsAll),
       map(cars => {
         if (!cars.length) {
-          this.store.dispatch(Cars({}));
+          this.store.dispatch(Cars({ data: '?query={}&sort={"_kmd.ect": -1}' }));
         }
         return !!cars;
       }),

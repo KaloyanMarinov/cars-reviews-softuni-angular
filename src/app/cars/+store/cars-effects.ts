@@ -3,8 +3,8 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { AddCar, AddCarComment, AddCarCommentSuccess, AddCarSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, DeleteCar, DeleteCarComments, DeleteCarSuccess, UpdateCar, UpdateCarSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
-import { CarsService } from '../cars.service';
 import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
+import { CarsService } from '../services/cars.service';
 import { combineLatest } from 'rxjs';
 import { Router } from '@angular/router';
 import { CommentsService } from 'src/app/comments/services/comments.service';
@@ -33,7 +33,7 @@ export class CarsEffects {
         )
       )
     )
-  )
+  );
 
   car$ = createEffect(() =>
     this.actions$.pipe(
@@ -51,7 +51,7 @@ export class CarsEffects {
         ),
       )
     )
-  )
+  );
 
   addCar$ = createEffect(() =>
     this.actions$.pipe(
@@ -66,7 +66,7 @@ export class CarsEffects {
         )
       ),
     )
-  )
+  );
 
   addCarCusses$ = createEffect(() =>
     this.actions$.pipe(
@@ -75,7 +75,7 @@ export class CarsEffects {
         this.router.navigate(['/cars/', car._id])
       }, 1500))
     ), { dispatch: false }
-  )
+  );
 
   updateCar$ = createEffect(() =>
     this.actions$.pipe(
@@ -84,14 +84,14 @@ export class CarsEffects {
         this.carsService.updateCar(id, data).pipe(
           switchMap((car) => [
             UpdateCarSuccess({ car }),
-            CarComments({id: car._id}),
+            CarComments({ id: car._id }),
             ActionSuccess({ error: { description: 'Add car added successfully.' } }),
           ]),
           catchError((err) => [ActionFailed({ error: err.error })])
         )
       ),
     )
-  )
+  );
 
   updateCarCusses$ = createEffect(() =>
     this.actions$.pipe(
@@ -100,7 +100,7 @@ export class CarsEffects {
         this.router.navigate(['/cars/', car._id])
       }, 1500))
     ), { dispatch: false }
-  )
+  );
 
   deleteCar$ = createEffect(() =>
     this.actions$.pipe(
@@ -117,7 +117,7 @@ export class CarsEffects {
         )
       ),
     )
-  )
+  );
 
   deleteCarSuccess$ = createEffect(() =>
     this.actions$.pipe(
@@ -126,7 +126,7 @@ export class CarsEffects {
         this.router.navigate(['/'])
       }, 1500))
     ), { dispatch: false }
-  )
+  );
 
   deleteCarComments$ = createEffect(() =>
     this.actions$.pipe(
@@ -137,7 +137,7 @@ export class CarsEffects {
         )
       ),
     ), { dispatch: false }
-  )
+  );
 
   uploadImage$ = createEffect(() =>
     this.actions$.pipe(
@@ -164,7 +164,7 @@ export class CarsEffects {
         )
       )
     )
-  )
+  );
 
   addComment$ = createEffect(() =>
     this.actions$.pipe(
@@ -179,5 +179,5 @@ export class CarsEffects {
         )
       )
     )
-  )
+  );
 }
