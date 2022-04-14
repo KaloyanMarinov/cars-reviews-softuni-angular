@@ -27,6 +27,10 @@ export class CarsService {
     return this.http.post<ICar>(`${this.CARS_BASE_URL}`, data);
   }
 
+  updateCar(id: string, data: IAddCar): Observable<ICar> {
+    return this.http.put<ICar>(`${this.CARS_BASE_URL}/${id}`, data);
+  }
+
   deleteCar(id: string): Observable<{count: number}> {
     return this.http.delete<{count: number}>(`${this.CARS_BASE_URL}?query={"_id":"${id}"}`);
   }

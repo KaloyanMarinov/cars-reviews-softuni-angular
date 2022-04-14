@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { map, Observable, take } from 'rxjs';
-import { isAdmin } from 'src/app/core/+store/auth/auth-selectors';
+import { select, Store } from '@ngrx/store';
+import { first, map, Observable, of, skipUntil, take, tap } from 'rxjs';
+import { getAuthUser, getUser, isAdmin } from 'src/app/core/+store/auth/auth-selectors';
 import { IAppState } from 'src/app/shared/interfaces';
 
 @Injectable()
@@ -14,15 +14,21 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-    return this.store.select(isAdmin).pipe(
-      take(1),
-      map((isAdmin) => {
-        if (isAdmin) {
-          return true;
-        }
-
-        return this.router.createUrlTree(['/auth/login']);
+    return this.store.pipe(
+      select(getAuthUser),
+      tap((getAuthUser) => {
+        if (getAuthUser._id === '' && !localStorage.getItem('authToken')) this.router.navigate(['/auth/login']);
+      }),
+      map((getAuthUser) => !!getAuthUser),
+      skipUntil(
+        this.store.pipe(select(isAdmin),
+          first(isAdmin => isAdmin)
+        )
+      ),
+      tap((isAdmin) => {
+        if (!isAdmin) return this.router.navigate(['/auth/login']);
+        return true;
       })
-    )
+    );
   }
 }

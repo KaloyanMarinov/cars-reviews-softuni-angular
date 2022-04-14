@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
-import { AddCar, AddCarComment, AddCarCommentSuccess, AddCarSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, DeleteCar, DeleteCarComments, DeleteCarSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
+import { AddCar, AddCarComment, AddCarCommentSuccess, AddCarSuccess, Car, CarComments, CarCommentsSuccess, Cars, CarsSuccess, CarSuccess, DeleteCar, DeleteCarComments, DeleteCarSuccess, UpdateCar, UpdateCarSuccess, UploadCarImage, UploadCarImageSuccess } from './cars-actions';
 import { CarsService } from '../cars.service';
 import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
 import { combineLatest } from 'rxjs';
@@ -71,6 +71,31 @@ export class CarsEffects {
   addCarCusses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AddCarSuccess),
+      tap(({ car }) => setTimeout(() => {
+        this.router.navigate(['/cars/', car._id])
+      }, 1500))
+    ), { dispatch: false }
+  )
+
+  updateCar$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UpdateCar),
+      switchMap(({ id, data }) =>
+        this.carsService.updateCar(id, data).pipe(
+          switchMap((car) => [
+            UpdateCarSuccess({ car }),
+            CarComments({id: car._id}),
+            ActionSuccess({ error: { description: 'Add car added successfully.' } }),
+          ]),
+          catchError((err) => [ActionFailed({ error: err.error })])
+        )
+      ),
+    )
+  )
+
+  updateCarCusses$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UpdateCarSuccess),
       tap(({ car }) => setTimeout(() => {
         this.router.navigate(['/cars/', car._id])
       }, 1500))

@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'add',
     pathMatch: 'full',
     component: AddCarComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: ':id',
@@ -28,6 +28,14 @@ const routes: Routes = [
     resolve: [
       carResolver
     ]
+  },
+  {
+    path: ':id/edit',
+    component: AddCarComponent,
+    resolve: [
+      carResolver
+    ],
+    canActivate: [AuthGuard]
   }
 ];
 

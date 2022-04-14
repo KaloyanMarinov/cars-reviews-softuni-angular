@@ -8,10 +8,13 @@ export const ActionTypes = {
 
   Car: '[CARS] Car',
   CarSuccess: '[CARS] Car Success',
-  CarClear: '[CARS] Cars Clear',
+  CarClear: '[CARS] Car Clear',
 
   AddCar: '[CARS] Add Car',
   AddCarSuccess: '[CARS] Add Car Success',
+
+  UpdateCar: '[CARS] Update Car',
+  UpdateCarSuccess: '[CARS] Update Car Success',
 
   AddCarComment: '[CARS] Add Car Comments',
   AddCarCommentSuccess: '[CARS] Add Car Comments Success',
@@ -57,6 +60,16 @@ export const AddCar = createAction(
 
 export const AddCarSuccess = createAction(
   ActionTypes.AddCarSuccess,
+  props<{ car: ICar }>()
+);
+
+export const UpdateCar = createAction(
+  ActionTypes.UpdateCar,
+  props<{ id:string, data: IAddCar }>()
+);
+
+export const UpdateCarSuccess = createAction(
+  ActionTypes.UpdateCarSuccess,
   props<{ car: ICar }>()
 );
 

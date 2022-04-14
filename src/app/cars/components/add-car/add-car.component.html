@@ -2,9 +2,10 @@
 <div class="container">
   <div class="row jc-c">
     <div class="col-u-sm-6 py-40">
-      <h1 class="h2 mb-20 ta-c tc-b">Add new car</h1>
+      <h1 *ngIf="addMode" class="h2 mb-20 ta-c tc-b">Add new car</h1>
+      <h1 *ngIf="!addMode" class="h2 mb-20 ta-c tc-b">Edit car</h1>
       <p class="mb-15 ta-c fs-12">All fields marked with * are required</p>
-      <form [formGroup]="addCarForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
         <div class="mb-20">
           <label for="brand" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Brand<span class="required tc-r">*</span></label>
           <input
@@ -42,6 +43,8 @@
             type="number"
             class="field"
             [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
+            maxlength="4"
+            minlength="4"
             formControlName="year"
             autocomplete="off"
             placeholder="Enter year..."
@@ -94,7 +97,7 @@
 
         <app-message [message]="message"></app-message>
 
-        <button type="submit" class="btn btn--s w-100" [class.loading]="submiting">Add car</button>
+        <button type="submit" class="btn btn--s tc-w w-100" [class.loading]="submiting">{{ addMode ? 'Add car' : 'Update car'}}</button>
       </form>
     </div>
   </div>

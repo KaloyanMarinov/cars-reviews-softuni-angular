@@ -23,7 +23,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     CarsListComponent,
     CarItemComponent,
     CarComponent,
-    AddCarComponent
+    AddCarComponent,
   ],
   imports: [
     StoreModule.forFeature('cars', carsReducer),

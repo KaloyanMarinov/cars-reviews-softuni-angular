@@ -13,8 +13,6 @@ export const getAuthUser = createSelector(getAuthStore, getUser);
 export const getAuthToken = createSelector(getAuthStore, getToken);
 export const getIsAuthenticated = createSelector(getAuthToken, token => !!token);
 export const isAdmin = createSelector(getAuthUser, user => {
-  if (user.roles) {
-    return !!user.roles.includes('Admin')
-  }
+  if (user.roles) { return user.roles.includes('Admin')}
   return false;
 });

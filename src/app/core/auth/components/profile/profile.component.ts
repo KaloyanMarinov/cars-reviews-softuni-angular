@@ -19,7 +19,8 @@ export class ProfileComponent implements OnInit {
     this.user$ = this.store.select(getAuthUser);
   }
 
-  logout(): void {
+  logout(e: Event): void {
+    (e.target as HTMLButtonElement).classList.add('loading');
     this.store.dispatch(Logout());
   }
 }

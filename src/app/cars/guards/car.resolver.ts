@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { IRouterState } from 'src/app/shared/interfaces/state';
-import { take, map, filter } from 'rxjs/operators';
+import { take, map, filter, catchError } from 'rxjs/operators';
 import { findCarByState, getCarsCar } from "../+store/cars-selectors";
-import { Car, CarComments, CarCommentsSuccess, CarSuccess } from "../+store/cars-actions";
+import { Car, CarComments, CarSuccess } from "../+store/cars-actions";
 
 @Injectable()
 export class carResolver implements Resolve<boolean> {
@@ -13,7 +13,7 @@ export class carResolver implements Resolve<boolean> {
 
   constructor(private store: Store<IRouterState>) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const id: string = route.params['id'];
 
     return this.store.pipe(
@@ -23,7 +23,9 @@ export class carResolver implements Resolve<boolean> {
           this.reviewSubscription = this.store.select(findCarByState(id)).subscribe(car => {
             if (car) {
               this.store.dispatch(CarSuccess({ car }));
-              this.store.dispatch(CarComments({ id: car._id }));
+              if (state.url.endsWith('edit')) {
+                this.store.dispatch(CarComments({ id: car._id }));
+              }
             } else {
               this.store.dispatch(Car({ id }));
             }

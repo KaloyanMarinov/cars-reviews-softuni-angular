@@ -23,9 +23,9 @@
 
           <div class="mt-20 wp-editor" [innerHTML]="(car$ | async)?.content"></div>
 
-          <div *ngIf="isAdmin$ | async" class="d-f mt-15">
-            <a href="#" class="btn btn--s tc-w mr-10">Edit</a>
-            <button *ngIf="(car$ | async) as car" (click)="deleteCar(car._id)" class="btn btn--r tc-w">Delete</button>
+          <div *ngIf="(isAdmin$ | async) && (car$ | async) as car" class="d-f mt-15">
+            <a [routerLink]="['/cars/', car._id, 'edit']" class="btn btn--s tc-w btn--100 mr-10">Edit</a>
+            <button *ngIf="(car$ | async) as car" (click)="deleteCar($event, car._id)" class="btn btn--r btn--100 tc-w">Delete</button>
           </div>
         </div>
       </div>
