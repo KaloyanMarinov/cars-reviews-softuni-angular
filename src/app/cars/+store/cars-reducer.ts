@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { ICarsState } from '../interfaces';
-import { AddCarCommentSuccess, AddCarSuccess, CarClear, CarCommentsSuccess, CarsSuccess, CarSuccess, DeleteCarSuccess, UpdateCar, UpdateCarSuccess } from './cars-actions';
+import { AddCarCommentSuccess, AddCarSuccess, CarClear, CarCommentsSuccess, CarsSuccess, CarSuccess, DeleteCarSuccess, UpdateCarSuccess } from './cars-actions';
 
 const initialState: ICarsState = {
   count: 0,
@@ -21,11 +21,7 @@ export const carsReducer = createReducer<ICarsState>(
   on(CarsSuccess, (state, { count, cars }) => ({ ...state, count, cars })),
   on(CarSuccess, (state, { car }) => ({ ...state, car})),
   on(CarClear, (state) => ({...state, car: initialState.car })),
-  on(AddCarSuccess, (state, { car }) => ({
-    ...state,
-    // car,
-    cars: [...state.cars, car]
-  })),
+  on(AddCarSuccess, (state, { car }) => ({...state, car, cars: []})),
   on(UpdateCarSuccess, (state, { car }) => ({
     ...state,
     car,

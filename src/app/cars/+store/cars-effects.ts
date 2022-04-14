@@ -8,6 +8,7 @@ import { CarsService } from '../services/cars.service';
 import { combineLatest } from 'rxjs';
 import { Router } from '@angular/router';
 import { CommentsService } from 'src/app/comments/services/comments.service';
+import { TopRatingCars } from 'src/app/pages/+store/pages-actions';
 
 @Injectable()
 export class CarsEffects {
