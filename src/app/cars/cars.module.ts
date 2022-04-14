@@ -17,6 +17,7 @@ import { AddCarComponent } from './components/add-car/add-car.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CommentsModule } from '../comments/comments.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ReactiveFormsModule,
     CarsRoutingModule,
     RouterModule,
+    CommentsModule,
     SharedModule,
     CKEditorModule
   ],

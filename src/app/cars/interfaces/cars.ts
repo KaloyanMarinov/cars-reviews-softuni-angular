@@ -1,4 +1,5 @@
-import { IComment, IKMD } from "src/app/shared/interfaces";
+import { IComment } from "src/app/comments/interfaces";
+import { IKMD } from "src/app/shared/interfaces";
 import { IPicture } from "src/app/shared/interfaces/picture"
 
 export interface ICar {

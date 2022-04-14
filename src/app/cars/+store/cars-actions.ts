@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { IAddComment, IComment } from 'src/app/shared/interfaces';
+import { IAddComment, IComment } from 'src/app/comments/interfaces';
 import { IAddCar, ICar, IUploadImage, IUploadImageSuccess } from '../interfaces/cars';
 
 export const ActionTypes = {

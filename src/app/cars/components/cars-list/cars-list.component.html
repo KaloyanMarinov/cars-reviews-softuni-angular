@@ -1,4 +1,4 @@
-<app-page-header></app-page-header>
+<app-page-header [title]="'All Cars Lists'"></app-page-header>
 <div class="pt-30">
   <div class="container">
     <app-loader *ngIf="!(cars$| async)?.length"></app-loader>

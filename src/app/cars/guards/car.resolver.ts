@@ -23,7 +23,7 @@ export class carResolver implements Resolve<boolean> {
           this.reviewSubscription = this.store.select(findCarByState(id)).subscribe(car => {
             if (car) {
               this.store.dispatch(CarSuccess({ car }));
-              if (state.url.endsWith('edit')) {
+              if (!state.url.endsWith('edit')) {
                 this.store.dispatch(CarComments({ id: car._id }));
               }
             } else {

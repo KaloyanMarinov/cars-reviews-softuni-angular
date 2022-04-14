@@ -6,8 +6,8 @@ import { AddCar, AddCarComment, AddCarCommentSuccess, AddCarSuccess, Car, CarCom
 import { CarsService } from '../cars.service';
 import { ActionFailed, ActionSuccess } from 'src/app/+store/app-actions';
 import { combineLatest } from 'rxjs';
-import { CommentsService } from 'src/app/shared/services/comments.service';
 import { Router } from '@angular/router';
+import { CommentsService } from 'src/app/comments/services/comments.service';
 
 @Injectable()
 export class CarsEffects {

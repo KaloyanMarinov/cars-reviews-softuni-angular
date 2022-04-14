@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './pages/components/about/about.component';
 import { ContactComponent } from './pages/components/contact/contact.component';
 import { AuthGuard } from './core/auth/auth.cuard';
+import { HomeComponent } from './pages/components/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'cars'
+    component: HomeComponent
   },
   {
     path: 'auth',

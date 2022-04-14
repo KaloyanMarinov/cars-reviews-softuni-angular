@@ -1,4 +1,4 @@
-import { IKMD } from ".";
+import { IKMD } from "src/app/shared/interfaces";
 
 export interface IAddComment {
   comment: string;

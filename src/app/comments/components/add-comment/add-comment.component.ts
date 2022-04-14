@@ -7,7 +7,8 @@ import { getAppMessage } from 'src/app/+store/app-selectors';
 import { AddCarComment, CarCommentsSuccess } from 'src/app/cars/+store/cars-actions';
 import { getIsAuthenticated, getAuthUser } from 'src/app/core/+store/auth/auth-selectors';
 import { IAuthState, IUser } from 'src/app/core/auth/interfaces';
-import { IAddComment, IMessage } from '../../interfaces';
+import { IMessage } from 'src/app/shared/interfaces';
+import { IAddComment } from '../../interfaces';
 import { CommentsService } from '../../services/comments.service';
 
 @Component({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page-header',
@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-header.component.scss']
 })
 export class PageHeaderComponent implements OnInit {
-
+  @Input() title = 'Car Reviews APP';
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
