@@ -67,18 +67,15 @@ z-index: 11;
   }
 
   &__btn {
-    flex: 0 0 46px;
-    width: 46px;
+    color: $white;
     height: 46px;
     transition: none;
-
-      &:not(:last-child) {
-        margin-right: 10px;
-      }
 
       @include media-breakpoint-up(md) {
 
           &:hover {
+            color: $secondary;
+            text-decoration: none;
 
               path {
                 fill: $secondary;
