@@ -1,26 +1,34 @@
 import { Injectable } from "@angular/core";
-import { Resolve } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { take, map, filter } from 'rxjs/operators';
-import { getCarsAll } from "../+store/cars-selectors";
+import { getCarsAll, getCarsByPage } from "../+store/cars-selectors";
 import { Cars } from "../+store/cars-actions";
 import { ICarsState } from "../interfaces";
 
 @Injectable()
 export class carsResolver implements Resolve<boolean> {
-  constructor(private store: Store<ICarsState>) { }
+  constructor(private store: Store<ICarsState>) {
+  }
 
-  resolve(): Observable<boolean> {
+  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
+    const page: number = route.params['page'] ? parseInt(route.params['page']) : 1;
+    let skip = (page - 1) * 6;
+
+    if (page === 1) {
+      skip = 0;
+    }
+
     return this.store.pipe(
-      select(getCarsAll),
-      map(cars => {
-        if (!cars.length) {
-          this.store.dispatch(Cars({ data: '?query={}&sort={"_kmd.ect": -1}' }));
+      select(getCarsByPage),
+      map(result => {
+        if (!result) {
+          this.store.dispatch(Cars({ data: '?query={}&sort={"_kmd.ect": -1}&limit=6&skip=' + skip, page }));
         }
-        return !!cars;
+        return !!result?.cars;
       }),
-      filter(cars => cars),
+      filter(result => result),
       take(1)
     );
   }

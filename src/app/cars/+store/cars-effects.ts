@@ -24,12 +24,17 @@ export class CarsEffects {
   cars$ = createEffect(() =>
     this.actions$.pipe(
       ofType(Cars),
-      switchMap(({ data }) =>
+      switchMap(({ data, page }) =>
         combineLatest(
           this.carsService.getCarsCount(),
           this.carsService.getCars(data),
         ).pipe(
-          map(([{ count }, cars]) => CarsSuccess({ count, cars })),
+          map(([{ count }, cars]) => {
+            if (!cars.length) {
+              this.router.navigate(['/cars'])
+            }
+            return CarsSuccess({ count, cars, page })
+          }),
           catchError((err) => [ActionFailed({ error: err.error })])
         )
       )

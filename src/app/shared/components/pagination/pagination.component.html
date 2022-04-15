@@ -1,0 +1,7 @@
+<div *ngIf="totalPages > 1" class="container">
+  <nav class="pagination pb-30 d-f ai-c jc-c mx-n5">
+    <a *ngIf="currentPage && currentPage > 1" [routerLink]="['/', type, 'page', currentPage - 1]" class="mx-5 br-6 foc fw-b"><</a>
+    <a *ngFor="let i of pages" [routerLink]="i === 1 ? ['/', type] : ['/', type, 'page', i]" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}" class="mx-5 br-6 foc fw-b">{{i}}</a>
+    <a *ngIf="currentPage && totalPages && currentPage < totalPages" [routerLink]="['/', type, 'page', currentPage + 1]" class="mx-5 br-6 foc fw-b">></a>
+  </nav>
+</div>

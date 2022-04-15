@@ -3,7 +3,7 @@
     <a [routerLink]="['/cars/', car._id]"><img src="{{car.pawPrintPicture}}" alt="{{car.brand}} {{car.model}}"></a>
   </figure>
 
-  <h3 class="h4 pb-15 mb-u-sm-a tc-p"><a [routerLink]="[car._id]">{{car.brand}} {{car.model}} {{car.year}}</a></h3>
+  <h3 class="h4 pb-15 mb-u-sm-a tc-p"><a [routerLink]="['/cars/', car._id]">{{car.brand}} {{car.model}} {{car.year}}</a></h3>
 
   <div class="d-f mb-20 ai-c jc-c">
     <app-rating [rating]="car.rating"></app-rating>

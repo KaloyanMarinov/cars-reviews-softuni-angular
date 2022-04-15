@@ -33,12 +33,12 @@ export const ActionTypes = {
 
 export const Cars = createAction(
   ActionTypes.Cars,
-  props<{ data?: string }>()
+  props<{ data?: string, page: number }>()
 );
 
 export const CarsSuccess = createAction(
   ActionTypes.CarsSuccess,
-  props<{ cars: ICar[], count: number }>()
+  props<{ cars: ICar[], count: number, page: number }>()
 );
 
 export const Car = createAction(

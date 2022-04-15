@@ -13,24 +13,31 @@ const initialState: ICarsState = {
     content: '',
     comments: [],
   },
-  cars: []
+  cars: [],
+  pagination: []
 };
 
 export const carsReducer = createReducer<ICarsState>(
   initialState,
-  on(CarsSuccess, (state, { count, cars }) => ({ ...state, count, cars })),
+  on(CarsSuccess, (state, { count, cars, page }) => ({
+    ...state, count,
+    cars: state.cars.concat(cars),
+    pagination: [...state.pagination, {cars, page}]
+  })),
   on(CarSuccess, (state, { car }) => ({ ...state, car})),
   on(CarClear, (state) => ({...state, car: initialState.car })),
   on(AddCarSuccess, (state, { car }) => ({...state, car, cars: []})),
   on(UpdateCarSuccess, (state, { car }) => ({
     ...state,
     car,
-    cars: [...state.cars.map(item => (item._id === car._id) ? car: item)]
+    cars: [],
+    pagination: []
   })),
   on(DeleteCarSuccess, (state, { count, id }) => ({
     ...state,
     count: state.count - count,
-    cars: [...state.cars.filter(car => car._id !== id)]
+    cars: [],
+    pagination: []
   })),
   on(CarCommentsSuccess, (state, { comments }) => ({
     ...state,

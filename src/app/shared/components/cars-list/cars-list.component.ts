@@ -8,7 +8,7 @@ import { ICar } from 'src/app/cars/interfaces';
   styleUrls: ['./cars-list.component.scss']
 })
 export class CarsListComponent implements OnInit {
-  @Input() cars!: Observable<ICar[]>;
+  @Input() cars!: Observable<ICar[] | undefined>;
 
   constructor() { }
 

@@ -1,0 +1,20 @@
+@import '../../../../assets/styles/tools';
+@import '../../../../assets/styles/settings';
+
+a {
+  width: 30px;
+  height: 30px;
+  color: $white;
+  background: $primary;
+
+    &:hover {
+      color: $primary;
+      background: $secondary;
+      text-decoration: none;
+    }
+}
+
+.active {
+  color: $primary;
+  background: $secondary;
+}

@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PageHeaderComponent } from './components/page-header/page-header.component';
 import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { CarItemComponent } from './components/car-item/car-item.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -20,6 +21,7 @@ import { CarItemComponent } from './components/car-item/car-item.component';
     PageHeaderComponent,
     CarsListComponent,
     CarItemComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { CarItemComponent } from './components/car-item/car-item.component';
     PageHeaderComponent,
     CarsListComponent,
     CarItemComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

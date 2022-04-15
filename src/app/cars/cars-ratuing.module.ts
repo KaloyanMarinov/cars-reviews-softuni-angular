@@ -17,6 +17,18 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'page',
+    pathMatch: 'full',
+    redirectTo: '/cars',
+  },
+  {
+    path: 'page/:page',
+    component: CarsComponent,
+    resolve: [
+      carsResolver
+    ]
+  },
+  {
     path: 'add',
     pathMatch: 'full',
     component: AddCarComponent,
