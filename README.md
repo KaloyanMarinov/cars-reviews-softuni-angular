@@ -32,4 +32,4 @@ The Cars module is also a lazyload module with router '/cars/'. He takes care of
 
 - **Comments Module**
 
-
+The comments module is responsible for listing and adding comments.
