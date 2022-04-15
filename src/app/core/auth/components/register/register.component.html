@@ -42,6 +42,23 @@
         </div>
 
         <div class="mb-20">
+          <label for="confirmPassword" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Confirm Password<span class="required tc-r">*</span></label>
+          <input
+            id="confirmPassword"
+            type="password"
+            class="field"
+            formControlName="confirmPassword"
+            [class.invalid]="(f.confirmPassword?.touched && f.confirmPassword?.errors?.confirmPasswords)"
+            autocomplete="off"
+            placeholder="Confirm Password"
+          >
+
+          <ng-container *ngIf="f.confirmPassword?.touched">
+            <p class="mt-10 tc-r" *ngIf="f.confirmPassword?.errors?.confirmPasswords">The passwords do not match.</p>
+          </ng-container>
+        </div>
+
+        <div class="mb-20">
           <label for="firstname" class="d-b tt-u fw-b fs-12 mb-10 tc-p">First Name<span class="required tc-r">*</span></label>
           <input
             id="firstname"

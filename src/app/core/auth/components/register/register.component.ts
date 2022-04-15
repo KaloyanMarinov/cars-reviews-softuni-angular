@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { getAppMessage } from 'src/app/+store/app-selectors';
 import { Register } from 'src/app/core/+store/auth/auth-actions';
 import { IMessage } from 'src/app/shared/interfaces';
+import { confirmPasswords } from 'src/app/shared/validators/confirm-password-validator';
 import { emailValidator } from 'src/app/shared/validators/email-validator';
 
 @Component({
@@ -18,11 +19,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
   formValid!: boolean | null;
   submiting = true;
   sub!: Subscription;
+  passwordControl = new FormControl(null, [Validators.required, Validators.minLength(6)]);
 
   constructor(private store: Store) {
     this.registerForm = new FormGroup({
       username: new FormControl('', [Validators.required, emailValidator]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      password: this.passwordControl,
+      confirmPassword: new FormControl('', [confirmPasswords(this.passwordControl)]),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
     });
