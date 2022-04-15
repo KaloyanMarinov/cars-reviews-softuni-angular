@@ -28,7 +28,7 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/cars-reviews-softuni-angular/assets"
+              "src/docs/assets"
             ],
             "styles": [
               "src/styles.scss"
