@@ -1,14 +1,14 @@
 
 <div class="d-f ai-c">
   <ng-container *ngIf="rating">
-    <img *ngFor="let i of stars.slice(0, rating | floor)" width="15" height="15" class="mr-5" src="../src/assets/images/icons/star-on.svg"alt="star">
+    <img *ngFor="let i of stars.slice(0, rating | floor)" width="15" height="15" class="mr-5" src="./assets/images/icons/star-on.svg"alt="star">
 
-    <img *ngIf="rating > (rating | floor) && rating < (rating | ceil)" width="15" height="15" class="mr-5" src="../src/assets/images/icons/star-half.svg"alt="star">
+    <img *ngIf="rating > (rating | floor) && rating < (rating | ceil)" width="15" height="15" class="mr-5" src="./assets/images/icons/star-half.svg"alt="star">
 
-    <img *ngFor="let i of stars.slice((rating | ceil), stars.length)" width="15" height="15" class="mr-5" src="../src/assets/images/icons/star-off.svg"alt="star">
+    <img *ngFor="let i of stars.slice((rating | ceil), stars.length)" width="15" height="15" class="mr-5" src="./assets/images/icons/star-off.svg"alt="star">
   </ng-container>
 
   <ng-container *ngIf="!rating">
-    <img *ngFor="let stars" width="15" height="15" class="mr-5" src="../src/assets/images/icons/star-off.svg"alt="star">
+    <img *ngFor="let stars" width="15" height="15" class="mr-5" src="./assets/images/icons/star-off.svg"alt="star">
   </ng-container>
 </div>

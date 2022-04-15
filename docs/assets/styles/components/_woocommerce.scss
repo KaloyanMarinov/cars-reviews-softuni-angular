@@ -1,0 +1,138 @@
+#billing_country_field,
+#shipping_country_field {
+  display: none;
+}
+
+.woocommerce-Price-currencySymbol {
+  margin-left: 5px;
+}
+
+.qty {
+  font-size: 30px;
+
+    @include media-breakpoint-up(sm) {
+      width: 155px;
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: 125px;
+    }
+
+    // sass-lint:disable no-vendor-prefixes
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+}
+
+.qty-btn {
+  top: 0;
+  bottom: 0;
+  width: 40px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 20px;
+      height: 4px;
+      background-color: $primary;
+    }
+
+    &:hover {
+
+        &::before,
+        &::after {
+          background-color: $secondary;
+        }
+    }
+
+    &--down {
+      left: 0;
+    }
+
+    &--up {
+      right: 0;
+
+        &::after {
+          transform: rotate(90deg);
+        }
+    }
+}
+
+.single_add_to_cart_button {
+  width: 184px;
+}
+
+.vtn {
+
+    &__select {
+      width: 180px;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: 20px;
+      color: $primary;
+      font-weight: $font-weight-bold;
+    }
+
+    &__note {
+      background: #e9e9e9;
+      border: 1px solid #b9b9b9;
+    }
+}
+
+.woocommerce-notices-wrapper {
+  @include make-container;
+  @include make-container-max-widths;
+}
+
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  position: relative;
+  padding: 15px 0;
+  font-weight: $font-weight-bold;
+  color: $primary;
+  text-transform: uppercase;
+  text-align: center;
+
+    a {
+      text-decoration: underline;
+
+        &:hover {
+          color: $secondary;
+        }
+    }
+}
+
+.woocommerce-error {
+  color: $danger;
+}
+
+.woocommerce-invalid {
+
+    .field {
+      border-color: $danger;
+      background: #ffe5e5;
+
+        &::placeholder {
+          color: $danger;
+        }
+    }
+}
+
+.woocommerce-privacy-policy-text {
+  font-size: 12px;
+  line-height: 1.3;
+
+  a {
+    font-weight: $font-weight-bold;
+    text-decoration: underline;
+  }
+}

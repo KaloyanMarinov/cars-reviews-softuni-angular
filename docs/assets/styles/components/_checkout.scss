@@ -1,0 +1,73 @@
+
+.woocommerce-shipping-destination {
+  display: none;
+}
+
+.woocommerce-billing-fields__field-wrapper,
+.woocommerce-shipping-fields__field-wrapper,
+.woocommerce-additional-fields__field-wrapper {
+  @include make-row;
+  @include make-row-ready;
+}
+
+.form-row {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 15px;
+  @include make-col-ready;
+
+    @include media-breakpoint-up(sm) {
+      @include make-col-size(6);
+    }
+
+    &.notes {
+      @include make-col-size(12);
+
+        .field {
+          height: 120px;
+        }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: $primary;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: $font-weight-bold;
+    }
+
+    .required {
+      color: $danger;
+      text-decoration: none;
+    }
+}
+
+.woocommerce-checkout-review-order-table {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.payment_methods {
+  margin-bottom: 30px;
+
+    .field-radio-label {
+      padding-left: 40px;
+
+        &::before {
+          top: 20px;
+          left: 15px;
+        }
+    }
+
+    .field-radio:checked ~ .field-radio-label {
+      color: $white;
+      background: $primary;
+    }
+}
+
+.payment_box {
+  padding: 15px;
+  font-size: 12px;
+  border: 1px solid $primary;
+}
