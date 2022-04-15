@@ -67,7 +67,7 @@
             <option *ngFor="let i of ratingValues" [value]="i">{{i}}</option>
           </select>
 
-          <p class="mt-10 tc-r" *ngIf="(f.rating?.touched && f.rating?.errors?.required) || (!f.rating?.touched && formValid)">Please provide a rating.</p>
+          <p class="mt-10 tc-r" *ngIf="f.rating?.touched && f.rating?.errors?.required">Please provide a rating."</p>
         </div>
 
         <div class="mb-20">
