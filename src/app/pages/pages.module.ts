@@ -8,16 +8,17 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { pagesReducer } from './+store/pages-reducers';
 import { PagesEffects } from './+store/pages-effects';
-import { PagesRoutingModule } from './pages-ratuing.module';
 import { CarsService } from '../cars/services/cars.service';
 import { RouterModule } from '@angular/router';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    NotFoundComponent
   ],
   imports: [
     StoreModule.forFeature('pages', pagesReducer),

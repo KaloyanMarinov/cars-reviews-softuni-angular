@@ -4,6 +4,7 @@ import { AuthGuard } from './core/auth/auth.cuard';
 import { AboutComponent } from './pages/components/about/about.component';
 import { ContactComponent } from './pages/components/contact/contact.component';
 import { HomeComponent } from './pages/components/home/home.component';
+import { NotFoundComponent } from './pages/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'contacts',
     component: ContactComponent,
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
   }
 ];

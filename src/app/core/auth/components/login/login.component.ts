@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-
   onSubmit(): void {
     this.formValid = this.loginForm.valid;
     const data = this.loginForm.value;

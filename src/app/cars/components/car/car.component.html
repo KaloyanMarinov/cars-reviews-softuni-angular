@@ -1,5 +1,7 @@
 <app-loader *ngIf="!(car$| async)?._id"></app-loader>
 
+<app-message [message]="message"></app-message>
+
 <article *ngIf="(car$ | async)?._id">
   <header class="mb-50 pt-u-md-100 pt-o-sm-80 pt-o-xs-30 pb-u-md-50 pb-d-sm-30 bg-l">
     <div class="container">
