@@ -33,3 +33,11 @@ The Cars module is also a lazyload module with router '/cars/'. He takes care of
 - **Comments Module**
 
 The comments module is responsible for listing and adding comments.
+
+## Deployment
+
+The application can be accessed at the following address: [Car Reviews](https://kaloyanmarinov.github.io/cars-reviews-softuni-angular/)
+
+Admin user credentials
+Username: admin@gmail.com
+Password: 123456
