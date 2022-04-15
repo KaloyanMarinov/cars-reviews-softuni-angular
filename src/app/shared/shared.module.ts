@@ -11,8 +11,6 @@ import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { CarItemComponent } from './components/car-item/car-item.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 
-
-
 @NgModule({
   declarations: [
     MessageComponent,
@@ -28,7 +26,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     RouterModule,
     NgCeilPipeModule,
     NgFloorPipeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   exports: [
