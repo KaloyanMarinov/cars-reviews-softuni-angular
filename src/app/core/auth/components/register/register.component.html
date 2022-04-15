@@ -11,7 +11,7 @@
             id="username"
             type="text"
             class="field"
-            [class.invalid]="(f.username?.touched && f.username?.errors?.required || f.username?.errors?.username || f.username?.errors?.email) || (!f.username?.touched && formValid)"
+            [class.invalid]="(f.username?.touched && f.username?.errors?.required || f.username?.errors?.email) || (!f.username?.touched && formValid)"
             formControlName="username"
             autocomplete="off"
             placeholder="E-mail address"

@@ -49,8 +49,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.submiting = true;
       this.store.dispatch(Register(data));
     } else {
-      this.submiting = false;
       this.formValid = true;
+      this.submiting = false;
     }
   }
 

@@ -6,6 +6,8 @@ import { map, Observable, Subscription, tap } from 'rxjs';
 import { ClearMessage } from 'src/app/+store/app-actions';
 import { getAppMessage, getRouterUrl } from 'src/app/+store/app-selectors';
 import { IAppState, IMessage, IRouterState } from 'src/app/shared/interfaces';
+import { urlValidator } from 'src/app/shared/validators/url-validator';
+import { yearValidator } from 'src/app/shared/validators/year-validator';
 import { AddCar, UpdateCar } from '../../+store/cars-actions';
 import { getCarsCar } from '../../+store/cars-selectors';
 import { IAddCar, ICar, IUploadImage } from '../../interfaces';
@@ -34,10 +36,10 @@ export class AddCarComponent implements OnInit {
     this.carForm = new FormGroup({
       brand: new FormControl('', [Validators.required]),
       model: new FormControl('', Validators.required),
-      year: new FormControl('', [Validators.required, Validators.maxLength(4)]),
+      year: new FormControl('', [Validators.required, yearValidator]),
       rating: new FormControl(5, [Validators.required]),
       content: new FormControl('', [Validators.required]),
-      pawPrintPicture: new FormControl('')
+      pawPrintPicture: new FormControl('', [urlValidator])
     });
 
     this.sub = this.store.select(getRouterUrl).subscribe(url => {
@@ -79,11 +81,11 @@ export class AddCarComponent implements OnInit {
       if (this.addMode) {
         this.store.dispatch(AddCar({ data }));
       } else {
-        this.store.dispatch(UpdateCar({id: this.carId, data }));
+        this.store.dispatch(UpdateCar({ id: this.carId, data }));
       }
     } else {
-      this.submiting = true;
       this.formValid = true;
+      this.submiting = false;
     }
   }
 

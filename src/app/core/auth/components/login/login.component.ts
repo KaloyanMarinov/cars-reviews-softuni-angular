@@ -43,8 +43,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.submiting = true;
       this.store.dispatch(Login(data));
     } else {
-      this.submiting = false;
       this.formValid = true;
+      this.submiting = false;
     }
   }
 

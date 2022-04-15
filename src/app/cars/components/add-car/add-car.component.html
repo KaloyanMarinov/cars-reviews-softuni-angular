@@ -42,7 +42,7 @@
             id="year"
             type="number"
             class="field"
-            [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
+            [class.invalid]="(f.year?.touched && f.year?.errors?.required || f.year?.errors?.year) || (!f.year?.touched && formValid)"
             maxlength="4"
             minlength="4"
             formControlName="year"
@@ -51,6 +51,8 @@
           >
 
           <p class="mt-10 tc-r" *ngIf="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)">Please provide a year.</p>
+
+          <p class="mt-10 tc-r" *ngIf="(f.year?.touched && f.year?.errors?.year)">Please enter valid year.</p>
         </div>
 
         <div class="mb-20">
@@ -83,16 +85,18 @@
         </div>
 
         <div class="mb-20">
-          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Featured Image</label>
+          <label for="model" class="d-b tt-u fw-b fs-12 mb-10 tc-p">Featured Image URL</label>
           <input
             id="picture"
             type="url"
             class="field"
-            [class.invalid]="(f.year?.touched && f.year?.errors?.required) || (!f.year?.touched && formValid)"
+            [class.invalid]="(f.pawPrintPicture?.touched && f.pawPrintPicture?.errors?.url)"
             formControlName="pawPrintPicture"
             autocomplete="off"
             accept="image/png, image/jpeg"
           >
+
+          <p class="mt-10 tc-r" *ngIf="(f.pawPrintPicture?.touched && f.pawPrintPicture?.errors?.url)">Please enter valid url.</p>
         </div>
 
         <app-message [message]="message"></app-message>
