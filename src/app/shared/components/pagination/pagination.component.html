@@ -1,7 +1,7 @@
 <div *ngIf="totalPages > 1" class="container">
   <nav class="pagination pb-30 d-f ai-c jc-c mx-n5">
-    <a *ngIf="currentPage && currentPage > 1" [routerLink]="['/', type, 'page', currentPage - 1]" class="mx-5 br-6 foc fw-b"><</a>
+    <a *ngIf="currentPage && currentPage > 1" [routerLink]="['/', type, 'page', currentPage - 1]" class="mx-5 br-6 foc fw-b"><svg fill="#fff" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11.463 5.187a.888.888 0 1 1 1.254 1.255L9.16 10l3.557 3.557a.888.888 0 1 1-1.254 1.255L7.26 10.61a.888.888 0 0 1 .16-1.382l4.043-4.042z"/></svg></a>
     <a *ngFor="let i of pages" [routerLink]="i === 1 ? ['/', type] : ['/', type, 'page', i]" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}" class="mx-5 br-6 foc fw-b">{{i}}</a>
-    <a *ngIf="currentPage && totalPages && currentPage < totalPages" [routerLink]="['/', type, 'page', currentPage + 1]" class="mx-5 br-6 foc fw-b">></a>
+    <a *ngIf="currentPage && totalPages && currentPage < totalPages" [routerLink]="['/', type, 'page', currentPage + 1]" class="mx-5 br-6 foc fw-b"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" d="M8.537 14.813a.888.888 0 1 1-1.254-1.255L10.84 10 7.283 6.442a.888.888 0 1 1 1.254-1.255L12.74 9.39a.888.888 0 0 1-.16 1.382l-4.043 4.042z"/></svg></a>
   </nav>
 </div>

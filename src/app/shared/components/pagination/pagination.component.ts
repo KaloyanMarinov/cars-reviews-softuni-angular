@@ -1,23 +1,36 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { getRouterParam } from 'src/app/+store/app-selectors';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
-  @Input() currentPage: number = 1;
+export class PaginationComponent implements  OnDestroy, OnChanges {
   @Input() totalPages: number = 0;
   @Input() type!: string;
+  currentPage: number = 1;
+  sub!: Subscription;
   pages!: number[];
+  router!: any;
 
-  constructor() {
+  constructor(private store: Store) {
+    this.sub = this.store.select(getRouterParam('page')).subscribe(params => {
+      if (params) {
+        this.currentPage = parseInt(params);
+      }
+    });
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     if (this.totalPages) {
-      console.log(this.totalPages);
       this.pages = Array(this.totalPages).fill(0).map((_, i) => i + 1);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

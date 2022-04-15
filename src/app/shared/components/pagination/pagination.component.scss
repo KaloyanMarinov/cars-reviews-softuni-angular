@@ -11,6 +11,10 @@ a {
       color: $primary;
       background: $secondary;
       text-decoration: none;
+
+        path {
+          fill: $primary;
+        }
     }
 }
 

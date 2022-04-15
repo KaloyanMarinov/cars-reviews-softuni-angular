@@ -15,6 +15,11 @@ export const getRouterParams = createSelector(
   (routerState: RouterReducerState<RouterStateUrl>) => routerState ? routerState.state.params : ''
 );
 
+export const getRouterParam = (param: string) => createSelector(
+  getRouterStore,
+  (routerState: RouterReducerState<RouterStateUrl>) => routerState ? routerState.state.params[param] : ''
+);
+
 export const getRouterQuery = createSelector(
   getRouterStore,
   (routerState: RouterReducerState<RouterStateUrl>) => routerState ? routerState.state.params : ''
