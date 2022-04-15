@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { getAppMessage } from 'src/app/+store/app-selectors';
 import { Register } from 'src/app/core/+store/auth/auth-actions';
 import { IMessage } from 'src/app/shared/interfaces';
+import { emailValidator } from 'src/app/shared/validators/email-validator';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store) {
     this.registerForm = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required, emailValidator]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),

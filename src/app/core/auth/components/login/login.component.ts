@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { getAppMessage } from 'src/app/+store/app-selectors';
 import { Login } from 'src/app/core/+store/auth/auth-actions';
 import { IMessage } from 'src/app/shared/interfaces';
+import { emailValidator } from 'src/app/shared/validators/email-validator';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required, emailValidator]),
       password: new FormControl('', Validators.required),
     });
 
