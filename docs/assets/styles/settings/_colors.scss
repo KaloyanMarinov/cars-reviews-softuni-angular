@@ -1,0 +1,40 @@
+$black: #000;
+$white: #fff;
+
+$yiq-text-dark: $black;
+$yiq-text-light: $white;
+$yiq-contrasted-threshold: 150;
+
+$primary: #08155d;
+$secondary: #36c96e;
+$danger: #ff4040;
+$gray: #b9b9b9;
+$light: #f8f8f8;
+$dark: #333;
+
+$text-color: #333;
+$link-color: $primary;
+$link-hover-color: $primary;
+
+$body-color: $text-color;
+$body-bg: $white;
+
+$headings-color: $dark;
+
+$theme-colors: (
+  'p': $primary,
+  's': $secondary,
+  'r': $danger,
+  'g': $gray,
+  'd': $dark,
+  'l': $light
+);
+
+$theme-hover-colors: (
+  'p': #078c5f,
+  's': darken($secondary, 10%),
+  'r': darken($danger, 10%),
+  'g': darken($gray, 5%),
+  'd': darken($dark, 5%),
+  'l': darken($light, 5%)
+);

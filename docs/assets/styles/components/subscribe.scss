@@ -1,0 +1,78 @@
+@use 'sass:math';
+
+// Tools
+@import '../tools';
+
+// Settings
+@import '../settings';
+
+
+.subscribe {
+  line-height: 1.3;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: -64px;
+    }
+
+    form {
+
+      @include media-breakpoint-up(sm) {
+        display: flex;
+      }
+    }
+
+    input {
+      height: 45px;
+      border-radius: 6px;
+
+        &[type='text'],
+        &[type='email'] {
+          padding-left: 50px;
+          padding-right: 15px;
+          color: $dark;
+          font-size: 16px;
+          background: $white url('#{$images-icons}email.svg') 15px center no-repeat;
+
+            &::placeholder {
+              color: $dark;
+            }
+
+            @include media-breakpoint-up(sm) {
+              flex-basis: 0;
+              flex-grow: 1;
+              max-width: 100%;
+            }
+
+            @include media-breakpoint-down(xs) {
+              width: 100%;
+            }
+        }
+
+        &[type='submit'] {
+          padding-left: 15px;
+          padding-right: 15px;
+          color: $primary;
+          letter-spacing: -1px;
+          text-align: left;
+          font-size: 20px;
+          font-weight: $font-weight-bold;
+          text-transform: uppercase;
+          background: url('#{$images-icons}send.svg') calc(100% - 15px) center no-repeat, linear-gradient(to right, #e7bf7b, #faf6a7 50%, #e7bf7b);
+
+            &:hover {
+              background: url('#{$images-icons}send.svg') calc(100% - 15px) center no-repeat, linear-gradient(to right, #faf6a7, #e7bf7b 50%, #faf6a7);
+            }
+
+            @include media-breakpoint-up(sm) {
+              flex: 0 0 190px;
+              max-width: 190px;
+              margin-left: 20px;
+            }
+
+            @include media-breakpoint-down(xs) {
+              width: 100%;
+              margin-top: 15px;
+            }
+        }
+    }
+}

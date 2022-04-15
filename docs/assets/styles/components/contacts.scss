@@ -1,0 +1,112 @@
+// Tools
+@import '../tools';
+
+// Settings
+@import '../settings';
+
+// Contact Form
+.cf {
+
+    .wpcf7 {
+
+        .ajax-loader {
+          display: none;
+          margin-top: 10px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .submitting {
+
+            .ajax-loader {
+              display: block;
+            }
+        }
+    }
+
+    .wpcf7-form-control-wrap {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .wpcf7-list-item {
+      margin-left: 0;
+    }
+
+    .wpcf7-form-checkbox {
+      position: absolute;
+      width: 0;
+      height: 0;
+      opacity: 0;
+
+        &:checked {
+
+            + .wpcf7-list-item-label::before {
+              background: $primary url('#{$images-icons}checkmark.svg') center no-repeat;
+            }
+        }
+    }
+
+    .wpcf7-list-item-label {
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      font-size: 14px;
+      line-height: 20px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 20px;
+          height: 20px;
+          border: 1px solid $primary;
+          border-radius: 6px;
+        }
+
+        a {
+          font-weight: $font-weight-bold;
+          text-decoration: underline;
+        }
+    }
+
+    .wpcf7-not-valid {
+      background: #ffe5e5;
+      border-color: $danger;
+
+        &::placeholder {
+          color: $danger;
+        }
+    }
+
+    .wpcf7-submit {
+      display: block;
+      width: 220px;
+      height: 45px;
+      padding-right: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      color: $primary;
+      font-size: 20px;
+      font-weight: $font-weight-bold;
+      text-transform: uppercase;
+      background: url('#{$images-icons}send.svg') calc(100% - 40px) center no-repeat, linear-gradient(to right, #e7bf7b, #faf6a7 50%, #e7bf7b);
+      border-radius: 6px;
+
+        &:hover {
+          background: url('#{$images-icons}send.svg') calc(100% - 40px) center no-repeat, linear-gradient(to right, #faf6a7, #e7bf7b 50%, #faf6a7);
+        }
+    }
+
+    .wpcf7-not-valid-tip {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      padding: 5px;
+      font-size: 11px;
+      text-align: left;
+    }
+}
+

@@ -1,0 +1,159 @@
+// Tools
+@import '../tools';
+
+// Settings
+@import '../settings';
+
+.lp {
+  box-shadow: 0 2px 18px rgba($black, .15);
+  transition: 350ms ease-in-out;
+
+    @include media-breakpoint-up(md) {
+        &:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 8px 24px rgba($black, .25);
+        }
+    }
+
+    .tag {
+      position: absolute;
+      top: 30px;
+      left: -45px;
+      z-index: 3;
+      display: block;
+      width: 150px;
+      padding: 5px;
+      color: $white;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 20px;
+      font-weight: $font-weight-bold;
+      border-top: 1px solid $white;
+      border-bottom: 1px solid $white;
+      background: $primary;
+      transform: rotate(-45deg);
+      transform-origin: top center;
+    }
+
+    .onsale {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 3;
+    }
+
+    .price {
+      font-size: 26px;
+
+        del {
+
+            .amount {
+              font-size: 16px;
+            }
+        }
+    }
+
+    &__thumb {
+
+        @include media-breakpoint-up(lg) {
+          height: 330px;
+        }
+
+        @include media-breakpoint-between(sm, md) {
+          height: 200px;
+        }
+
+        @include media-breakpoint-down(xs) {
+          height: 0;
+          padding-bottom: 80%;
+        }
+
+        img {
+          position: absolute;
+          top: 0;
+          left: -9999px;
+          right: -9999px;
+          bottom: 0;
+          width: auto;
+          margin: auto;
+          min-width: 100%;
+          min-height: 100%;
+          max-width: none;
+          transition: 350ms ease-in-out;
+        }
+
+        @include media-breakpoint-up(md) {
+
+            &:hover {
+
+                img {
+                  transform: scale(1.05);
+                }
+            }
+        }
+    }
+}
+
+.lpp {
+
+  .page-numbers {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-weight: $font-weight-bold;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    color: $primary;
+    background: $white;
+
+      &.current {
+        color: $white;
+        background: $primary;
+      }
+  }
+
+  @include media-breakpoint-up(md) {
+
+      a:hover {
+        color: $white;
+        background: $primary;
+        text-decoration: none;
+      }
+  }
+
+  .next,
+  .prev {
+    position: absolute;
+    top: 0;
+    font-size: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background: transparent;
+
+      path {
+        fill: $primary;
+      }
+
+      @include media-breakpoint-up(md) {
+
+          &:hover {
+            background: transparent;
+
+              path {
+                fill: $secondary;
+              }
+          }
+      }
+  }
+
+  .next {
+    right: 0;
+  }
+
+  .prev {
+    left: 0;
+  }
+}
