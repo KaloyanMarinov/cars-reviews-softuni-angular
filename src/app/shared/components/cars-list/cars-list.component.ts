@@ -22,13 +22,6 @@ const listAnimation = trigger('listAnimation', [
       ],
       { optional: true }
     ),
-    query(':leave',
-      animate('200ms', style({
-        opacity: 0,
-        transform: 'translateX(-10%)',
-      })),
-      { optional: true}
-    )
   ])
 ]);
 
