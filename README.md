@@ -38,6 +38,8 @@ The comments module is responsible for listing and adding comments.
 
 The application can be accessed at the following address: [Car Reviews](https://kaloyanmarinov.github.io/cars-reviews-softuni-angular/)
 
-Admin user credentials
+Admin user credentials:
+
 Username: admin@gmail.com
+
 Password: 123456
