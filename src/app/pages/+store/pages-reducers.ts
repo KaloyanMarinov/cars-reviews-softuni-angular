@@ -22,12 +22,13 @@ export const pagesReducer = createReducer<IPageState>(
   })),
   on(UpdateCarSuccess, (state) => ({
     ...state,
-    home: { ...state.home, topRatingCars: [] }
+    home: { ...state.home, topRatingCars: [], latestCars:[] }
   })),
   on(AddCarSuccess, (state, { car }) => ({
     ...state,
     home: {
       ...state.home,
+      topRatingCars: [],
       latestCars: [
         ...state.home.latestCars.slice(state.home.latestCars.length),
         car,
@@ -37,6 +38,6 @@ export const pagesReducer = createReducer<IPageState>(
   })),
   on(DeleteCarSuccess, (state) => ({
     ...state,
-    home: {...state.home, latestCars: []}
+    home: {...state.home, topRatingCars: [], latestCars: []}
   })),
 );
