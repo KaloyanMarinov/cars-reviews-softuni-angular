@@ -37,7 +37,7 @@ export class CarComponent implements OnInit, OnDestroy {
 
     this.sub = this.store.select(getAppMessage).subscribe(message => {
       this.message = message;
-      if (message.messageText) {
+      if (message.messageText && !message.type) {
         setTimeout(() => {
           this.route.navigate(['/'])
         }, 1500);

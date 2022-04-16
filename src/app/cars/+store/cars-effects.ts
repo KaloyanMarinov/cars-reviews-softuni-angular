@@ -64,6 +64,7 @@ export class CarsEffects {
       ofType(AddCar),
       switchMap(({ data }) =>
         this.carsService.addCar(data).pipe(
+          tap((car) => car.comments = []),
           switchMap((car) => [
             AddCarSuccess({ car }),
             ActionSuccess({ error: { description: 'Add car added successfully.' } }),

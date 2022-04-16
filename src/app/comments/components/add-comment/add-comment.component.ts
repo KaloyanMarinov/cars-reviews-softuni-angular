@@ -4,12 +4,11 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { ClearMessage } from 'src/app/+store/app-actions';
 import { getAppMessage } from 'src/app/+store/app-selectors';
-import { AddCarComment, CarCommentsSuccess } from 'src/app/cars/+store/cars-actions';
+import { AddCarComment } from 'src/app/cars/+store/cars-actions';
 import { getIsAuthenticated, getAuthUser } from 'src/app/core/+store/auth/auth-selectors';
 import { IAuthState, IUser } from 'src/app/core/auth/interfaces';
 import { IMessage } from 'src/app/shared/interfaces';
 import { IAddComment } from '../../interfaces';
-import { CommentsService } from '../../services/comments.service';
 
 @Component({
   selector: 'app-add-comment',
@@ -27,10 +26,7 @@ export class AddCommentComponent implements OnInit {
   sub!: Subscription;
   ratingValues = Array(5).fill(0).map((_, i) => i + 1);
 
-  constructor(
-    private store: Store<IAuthState>,
-    private commentsService: CommentsService
-  ) { }
+  constructor(private store: Store<IAuthState>) { }
 
   ngOnInit(): void {
     this.sub = this.store.select(getIsAuthenticated).subscribe(logged => this.isLogged = logged);
